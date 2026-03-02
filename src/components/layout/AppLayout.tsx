@@ -44,11 +44,11 @@ export default function AppLayout() {
       {/* Main Content Area */}
       <main
         id="page-wrapper"
-        className={`flex flex-1 overflow-hidden transition-all duration-300 ${
-          isBookOnlyMode ? "pt-0 pb-0" : "pt-14 pb-12"
-        }`}
+        className="flex flex-1 overflow-hidden transition-all duration-300"
         style={{
           backgroundColor: "#e0e4e8",
+          paddingTop: isBookOnlyMode ? 0 : 64, // 64px = 4rem (clears topbar)
+          paddingBottom: isBookOnlyMode ? 0 : 96, // 96px = 6rem (clears footer)
         }}
       >
         <BookViewer />

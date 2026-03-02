@@ -56,11 +56,7 @@ export default function Toolbar() {
   return (
     <footer
       id="toolBox"
-      className="fixed bottom-0 left-0 right-0 z-50 flex h-12 items-center justify-center gap-1 px-2 no-print"
-      style={{
-        background:
-          "linear-gradient(135deg, #1e88e5 0%, #42a5f5 50%, #64b5f6 100%)",
-      }}
+      className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex h-14 items-center justify-center gap-1 rounded-2xl bg-white px-3 shadow-xl border border-gray-200 no-print"
     >
       {/* Table of Contents */}
       <ToolButton
@@ -74,14 +70,14 @@ export default function Toolbar() {
       <ToolSeparator />
 
       {/* Page Navigation */}
-      <div className="flex items-center gap-1.5">
-        <span className="text-xs text-white/70 hidden sm:inline">
+      <div className="flex items-center gap-2 px-1">
+        <span className="text-sm font-semibold text-gray-800 hidden sm:inline">
           Go to page
         </span>
         {showPageInput ? (
           <input
             type="text"
-            className="w-14 rounded border border-white/40 bg-white/15 px-2 py-0.5 text-center text-sm text-white outline-none focus:border-white placeholder:text-white/50"
+            className="w-16 rounded border border-gray-300 bg-gray-50 px-2 py-1 text-center text-sm font-medium text-gray-900 outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
             value={pageInput}
             onChange={(e) => setPageInput(e.target.value)}
             onKeyUp={handlePageNavigate}
@@ -95,12 +91,12 @@ export default function Toolbar() {
         ) : (
           <button
             onClick={() => setShowPageInput(true)}
-            className="flex items-center gap-1 rounded border border-white/30 bg-white/10 px-2 py-0.5 text-sm text-white transition-colors hover:bg-white/20"
+            className="flex items-center gap-1.5 rounded bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-300"
             title="Go to page"
           >
-            <span className="font-medium tabular-nums">{currentPage}</span>
-            <span className="text-white/50">/</span>
-            <span id="totalPages" className="tabular-nums text-white/80">
+            <span className="tabular-nums">{currentPage}</span>
+            <span className="text-gray-500 font-normal">/</span>
+            <span id="totalPages" className="tabular-nums">
               {totalPages}
             </span>
           </button>
@@ -217,6 +213,7 @@ function ToolButton({
   title,
   onClick,
   children,
+  active,
 }: {
   id: string;
   title: string;
@@ -229,7 +226,9 @@ function ToolButton({
       id={id}
       onClick={onClick}
       title={title}
-      className="flex h-9 w-9 items-center justify-center rounded-lg text-white/80 transition-all hover:bg-white/20 hover:text-white active:scale-95"
+      className={`flex h-10 w-10 items-center justify-center rounded-lg text-gray-600 transition-all hover:bg-gray-100 hover:text-gray-900 active:scale-95 ${
+        active ? "bg-brand-100 text-brand-600" : ""
+      }`}
     >
       {children}
     </button>
@@ -237,5 +236,5 @@ function ToolButton({
 }
 
 function ToolSeparator() {
-  return <div className="mx-0.5 h-5 w-px bg-white/25" />;
+  return <div className="mx-1 h-6 w-px bg-gray-200" />;
 }
