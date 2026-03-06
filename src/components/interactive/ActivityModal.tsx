@@ -54,9 +54,11 @@ export default function ActivityModal({
     };
   }, [isOpen, handleKeyDown]);
 
-  // Reset fullscreen when modal closes
+  // Always open in fullscreen; reset on close
   useEffect(() => {
-    if (!isOpen) setIsFullscreen(false);
+    if (isOpen) {
+      setIsFullscreen(true);
+    }
   }, [isOpen]);
 
   if (!isOpen) return null;

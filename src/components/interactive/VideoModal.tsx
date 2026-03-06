@@ -23,7 +23,7 @@ export default function VideoModal({
 }: VideoModalProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { width, height } = parseSize(size);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(true);
   const [videoError, setVideoError] = useState(false);
 
   // Close on Escape
@@ -59,10 +59,11 @@ export default function VideoModal({
     }
   }, [isOpen]);
 
-  // Reset fullscreen when modal closes
+  // Always open in fullscreen; reset error on close
   useEffect(() => {
-    if (!isOpen) {
-      setIsFullscreen(false);
+    if (isOpen) {
+      setIsFullscreen(true);
+    } else {
       setVideoError(false);
     }
   }, [isOpen]);
@@ -139,7 +140,7 @@ export default function VideoModal({
         </div>
 
         {/* Video */}
-        <div className="relative flex-1 bg-black flex items-center justify-center">
+        <div className="relative flex-1 bg-black flex items-center justify-center min-h-0 overflow-hidden">
           {videoError ? (
             <div className="flex flex-col items-center justify-center gap-3 text-gray-400 p-8">
               <svg
@@ -168,7 +169,7 @@ export default function VideoModal({
               src={`/${link}`}
               controls
               autoPlay
-              className="w-full h-full object-contain"
+              className="w-full max-h-full object-contain"
               style={isFullscreen ? {} : { aspectRatio: `${width}/${height}` }}
               onError={() => setVideoError(true)}
             >

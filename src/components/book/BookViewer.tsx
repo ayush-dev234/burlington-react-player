@@ -116,9 +116,9 @@ export default function BookViewer() {
     if (w === 0 || h === 0) return { pageWidth: 0, pageHeight: 0 };
 
     const isDouble = viewMode === "double";
-    const navButtonSpace = 100;
+    const navButtonSpace = 80;
     const availableWidth = w - navButtonSpace;
-    const availableHeight = h - 16;
+    const availableHeight = h - 8;
 
     const pageAspect = PAGE_ASPECT_RATIO;
     const numPages = isDouble ? 2 : 1;
@@ -378,8 +378,8 @@ function NavButton({
       id={id}
       onClick={onClick}
       disabled={disabled}
-      className={`group z-50 mx-2 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/80 text-gray-600 shadow-md backdrop-blur-md transition-all hover:bg-white hover:text-brand-600 hover:shadow-lg active:scale-90 disabled:opacity-30 disabled:pointer-events-none ${
-        direction === "prev" ? "mr-4" : "ml-4"
+      className={`group z-50 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/80 text-gray-600 shadow-md backdrop-blur-md transition-all hover:bg-white hover:text-brand-600 hover:shadow-lg active:scale-90 disabled:opacity-30 disabled:pointer-events-none ${
+        direction === "prev" ? "ml-2 mr-3" : "ml-3 mr-2"
       }`}
       title={direction === "prev" ? "Previous" : "Next"}
     >
