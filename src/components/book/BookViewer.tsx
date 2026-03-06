@@ -11,10 +11,36 @@ import { useBookmarkStore } from "@/store/useBookmarkStore";
 import { usePageFlipSound } from "@/hooks/usePageFlipSound";
 import { getPageImagePath } from "@/utils/pageCalculations";
 import { PAGE_ASPECT_RATIO } from "@/utils/constants";
+import type { InteractiveItem } from "@/types/book.types";
+import PageOverlay from "@/components/interactive/PageOverlay";
+import ActivityModal from "@/components/interactive/ActivityModal";
+import VideoModal from "@/components/interactive/VideoModal";
 // @ts-ignore
 import HTMLFlipBook from "react-pageflip";
 
 const FlipBook = HTMLFlipBook as any;
+
+/**
+ * Determine if the current page is a "single" page in double mode with showCover.
+ * With showCover={true}, react-pageflip renders:
+ * - Page 1 (cover): single page on the RIGHT half of the spread area
+ * - Last page (if even count): single page on the LEFT half
+ * - All other pages: full two-page spread
+ */
+function isCoverOrBack(
+  page: number,
+  totalPages: number,
+): "cover" | "back" | false {
+  if (page <= 1) return "cover";
+  if (page >= totalPages && totalPages % 2 === 0) return "back";
+  return false;
+}
+
+// ── Modal state type ─────────────────────────────────────────────────
+interface ModalState {
+  type: "activity" | "video" | null;
+  item: InteractiveItem | null;
+}
 
 export default function BookViewer() {
   const { currentPage, totalPages, viewMode, zoomLevel, setPage } =
@@ -25,7 +51,48 @@ export default function BookViewer() {
   const bookRef = useRef<any>(null);
   const [containerSize, setContainerSize] = useState({ w: 0, h: 0 });
 
-  // Measure container
+  // Track whether the flipbook component is ready to accept programmatic page changes
+  const flipbookReadyRef = useRef(false);
+  // Track the last page we programmatically set to avoid echo loops
+  const lastSetPageRef = useRef(0);
+
+  // ── Interactive modal state ────────────────────────────────────────
+  const [modal, setModal] = useState<ModalState>({ type: null, item: null });
+
+  const handleItemClick = useCallback((item: InteractiveItem) => {
+    if (item.type === "video") {
+      setModal({ type: "video", item });
+    } else {
+      // iframe and audio both open in activity modal
+      setModal({ type: "activity", item });
+    }
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModal({ type: null, item: null });
+  }, []);
+
+  // ── Force remount key ──────────────────────────────────────────────
+  // react-pageflip does NOT support dynamically changing usePortrait or
+  // width/height after mount. We use a key that includes viewMode + dimensions
+  // to force a full unmount/remount whenever these change.
+  // We also capture the currentPage at remount time so the book opens to the
+  // correct page via startPage.
+  const [remountKey, setRemountKey] = useState(0);
+  const startPageRef = useRef(0); // 0-indexed start page for react-pageflip
+
+  // When viewMode changes, trigger a remount and preserve the current page
+  useEffect(() => {
+    // Reset flipbook ready state since we're about to remount
+    flipbookReadyRef.current = false;
+    lastSetPageRef.current = 0;
+    // Store the current page so the new FlipBook instance opens at the right spot
+    startPageRef.current = currentPage - 1;
+    setRemountKey((k) => k + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewMode]);
+
+  // ── Measure container ──────────────────────────────────────────────
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -43,7 +110,7 @@ export default function BookViewer() {
     return () => observer.disconnect();
   }, []);
 
-  // Calculate page dimensions
+  // ── Calculate page dimensions ──────────────────────────────────────
   const pageDimensions = useMemo(() => {
     const { w, h } = containerSize;
     if (w === 0 || h === 0) return { pageWidth: 0, pageHeight: 0 };
@@ -53,7 +120,6 @@ export default function BookViewer() {
     const availableWidth = w - navButtonSpace;
     const availableHeight = h - 16;
 
-    // For react-pageflip, pageWidth refers to a single page's width
     const pageAspect = PAGE_ASPECT_RATIO;
     const numPages = isDouble ? 2 : 1;
 
@@ -71,37 +137,52 @@ export default function BookViewer() {
     };
   }, [containerSize, viewMode]);
 
+  // ── Navigation handlers ────────────────────────────────────────────
   const handlePrev = useCallback(() => {
-    if (bookRef.current && bookRef.current.pageFlip()) {
+    if (bookRef.current?.pageFlip()) {
       bookRef.current.pageFlip().flipPrev();
     }
   }, []);
 
   const handleNext = useCallback(() => {
-    if (bookRef.current && bookRef.current.pageFlip()) {
+    if (bookRef.current?.pageFlip()) {
       bookRef.current.pageFlip().flipNext();
     }
   }, []);
 
-  // Sync external page changes (e.g. from toolbar) into the flipbook
+  // ── Sync store → flipbook (for toolbar "go to page", sidebar TOC clicks, etc.) ──
   useEffect(() => {
-    if (bookRef.current && bookRef.current.pageFlip()) {
-      const pageFlip = bookRef.current.pageFlip();
-      const currentFlipPage = pageFlip.getCurrentPageIndex() + 1;
+    if (!flipbookReadyRef.current) return;
+    const pf = bookRef.current?.pageFlip();
+    if (!pf) return;
 
-      // if external currentPage differs from flipbook current page, turn to it
-      if (currentFlipPage !== currentPage) {
-        // react-pageflip pages are 0-indexed
-        pageFlip.turnToPage(currentPage - 1);
-      }
+    const targetIndex = currentPage - 1;
+    const currentIndex = pf.getCurrentPageIndex();
+
+    // Only navigate if the flipbook isn't already on the right page
+    // and this wasn't a page we just SET from the flipbook's onFlip
+    if (
+      currentIndex !== targetIndex &&
+      lastSetPageRef.current !== currentPage
+    ) {
+      pf.turnToPage(targetIndex);
     }
   }, [currentPage]);
 
-  // Handle internal flipbook page changes
+  // ── Handle flipbook page changes (internal flips by user) ─────────
   const onPage = useCallback(
     (e: any) => {
-      // e.data is the new 0-indexed page
+      // e.data is 0-indexed page number from react-pageflip
       const newPage = e.data + 1;
+
+      // Mark flipbook as ready after first event
+      if (!flipbookReadyRef.current) {
+        flipbookReadyRef.current = true;
+      }
+
+      // Track this so the sync effect above doesn't echo it back
+      lastSetPageRef.current = newPage;
+
       if (newPage !== currentPage) {
         setPage(newPage);
       }
@@ -113,7 +194,7 @@ export default function BookViewer() {
     playFlip();
   }, [playFlip]);
 
-  // Keyboard
+  // ── Keyboard navigation ────────────────────────────────────────────
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") handlePrev();
@@ -122,6 +203,16 @@ export default function BookViewer() {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [handlePrev, handleNext]);
+
+  // ── Determine translateX offset for centering cover/back ───────────
+  const translateOffset = useMemo(() => {
+    if (viewMode !== "double") return "0%";
+
+    const singleStatus = isCoverOrBack(currentPage, totalPages);
+    if (singleStatus === "cover") return "-25%";
+    if (singleStatus === "back") return "25%";
+    return "0%";
+  }, [viewMode, currentPage, totalPages]);
 
   return (
     <div
@@ -141,17 +232,7 @@ export default function BookViewer() {
         id="book-container"
         className="relative flex items-center justify-center drop-shadow-2xl"
         style={{
-          transform: `scale(${zoomLevel}) translateX(${
-            viewMode === "double"
-              ? currentPage === 1
-                ? "-25%"
-                : currentPage === totalPages
-                  ? totalPages % 2 === 0
-                    ? "25%"
-                    : "-25%"
-                  : "0%"
-              : "0%"
-          })`,
+          transform: `scale(${zoomLevel}) translateX(${translateOffset})`,
           transformOrigin: "center center",
           transition: "transform 0.4s ease-out",
           width:
@@ -163,6 +244,7 @@ export default function BookViewer() {
       >
         {pageDimensions.pageWidth > 0 && pageDimensions.pageHeight > 0 && (
           <FlipBook
+            key={`flipbook-${viewMode}-${remountKey}`}
             width={pageDimensions.pageWidth}
             height={pageDimensions.pageHeight}
             size="fixed"
@@ -172,15 +254,22 @@ export default function BookViewer() {
             maxHeight={1500}
             maxShadowOpacity={0.5}
             showCover={true}
+            startPage={startPageRef.current}
             usePortrait={viewMode === "single"}
             ref={bookRef}
             onFlip={onPage}
             onChangeState={onFlipEvent}
             className="flip-book"
             flippingTime={1000}
+            disableFlipByClick={true}
+            clickEventForward={true}
           >
             {Array.from({ length: totalPages }).map((_, i) => (
-              <PageImage key={i} pageNum={i + 1} />
+              <PageImage
+                key={i}
+                pageNum={i + 1}
+                onItemClick={handleItemClick}
+              />
             ))}
           </FlipBook>
         )}
@@ -194,14 +283,36 @@ export default function BookViewer() {
       />
 
       <BookmarkCorner page={currentPage} setPage={setPage} />
+
+      {/* ── Interactive Modals ──────────────────────────────────────── */}
+      <ActivityModal
+        isOpen={modal.type === "activity" && !!modal.item}
+        onClose={closeModal}
+        link={modal.item?.link ?? ""}
+        title={modal.item?.title ?? "Activity"}
+        size={modal.item?.size ?? "1024x720"}
+      />
+
+      <VideoModal
+        isOpen={modal.type === "video" && !!modal.item}
+        onClose={closeModal}
+        link={modal.item?.link ?? ""}
+        title={modal.item?.title ?? "Video"}
+        size={modal.item?.size ?? "1024x720"}
+      />
     </div>
   );
 }
 
 // ── Page Image ───────────────────────────────────────────────────────
 
-const PageImage = React.forwardRef<HTMLDivElement, { pageNum: number }>(
-  ({ pageNum }, ref) => {
+interface PageImageProps {
+  pageNum: number;
+  onItemClick: (item: InteractiveItem) => void;
+}
+
+const PageImage = React.forwardRef<HTMLDivElement, PageImageProps>(
+  ({ pageNum, onItemClick }, ref) => {
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(false);
     const src = getPageImagePath(pageNum);
@@ -209,7 +320,7 @@ const PageImage = React.forwardRef<HTMLDivElement, { pageNum: number }>(
     return (
       <div
         ref={ref}
-        className="page bg-white relative overflow-hidden flex items-center justify-center pointer-events-none border-x border-gray-100"
+        className="page bg-white relative overflow-hidden flex items-center justify-center border-x border-gray-100"
       >
         {!loaded && !error && (
           <div className="absolute inset-0 animate-pulse bg-gray-100" />
@@ -233,8 +344,11 @@ const PageImage = React.forwardRef<HTMLDivElement, { pageNum: number }>(
           draggable={false}
         />
 
-        {/* Page overlay */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/40 px-3 py-0.5 text-xs text-white backdrop-blur-sm shadow-sm opacity-0 hover:opacity-100 transition-opacity">
+        {/* Interactive overlay with activity/video icons */}
+        <PageOverlay pageNum={pageNum} onItemClick={onItemClick} />
+
+        {/* Page number overlay */}
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/40 px-3 py-0.5 text-xs text-white backdrop-blur-sm shadow-sm opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
           {pageNum}
         </div>
       </div>

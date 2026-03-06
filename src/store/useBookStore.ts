@@ -4,7 +4,7 @@
 
 import { create } from "zustand";
 import { clampPage } from "@/utils/pageCalculations";
-import { getStorageItem, setStorageItem } from "@/utils/storage";
+import { setStorageItem } from "@/utils/storage";
 import { MAX_ZOOM, MIN_ZOOM, ZOOM_STEP } from "@/utils/constants";
 
 interface BookState {
@@ -33,11 +33,11 @@ export const useBookStore = create<BookState>((set, get) => ({
   isConfigLoaded: false,
 
   initialize: (totalPages) => {
-    const savedPage = getStorageItem<number>("last_page", 1);
-    const clamped = clampPage(savedPage, totalPages);
+    // Always start at page 1 (cover) to match react-pageflip's startPage=0.
+    // This ensures the cover centering logic works on initial load.
     set({
       totalPages,
-      currentPage: clamped,
+      currentPage: 1,
       isConfigLoaded: true,
     });
   },
