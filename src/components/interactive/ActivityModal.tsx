@@ -27,7 +27,7 @@ export default function ActivityModal({
   size,
 }: ActivityModalProps) {
   const { width, height } = parseSize(size);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(true);
 
   // Close on Escape
   const handleKeyDown = useCallback(
@@ -64,7 +64,7 @@ export default function ActivityModal({
   return (
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center"
-      style={{ backgroundColor: "transparent" }}
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
     >
       <div
         className="relative flex flex-col bg-white shadow-2xl overflow-hidden transition-all duration-300"

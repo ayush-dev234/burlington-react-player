@@ -263,6 +263,8 @@ export default function BookViewer() {
             flippingTime={1000}
             disableFlipByClick={true}
             clickEventForward={true}
+            showPageCorners={false}
+            useMouseEvents={false}
           >
             {Array.from({ length: totalPages }).map((_, i) => (
               <PageImage
@@ -408,7 +410,7 @@ function BookmarkCorner({
       }`}
       title="Toggle bookmark"
     >
-      <svg width={32} height={42} viewBox="0 0 28 36" fill="currentColor">
+      <svg width={24} height={32} viewBox="0 0 28 36" fill="currentColor">
         <path d="M0 0h28v36l-14-8-14 8V0z" />
       </svg>
     </button>

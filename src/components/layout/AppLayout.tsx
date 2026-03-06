@@ -47,7 +47,7 @@ export default function AppLayout() {
         className="flex flex-1 overflow-hidden transition-all duration-300"
         style={{
           backgroundColor: "#e0e4e8",
-          paddingTop: isBookOnlyMode ? 0 : 64, // 64px = 4rem (clears topbar)
+          paddingTop: isBookOnlyMode ? 0 : 52, // ~49px topbar (44px bar + 5px progress)
           paddingBottom: isBookOnlyMode ? 0 : 96, // 96px = 6rem (clears footer)
         }}
       >

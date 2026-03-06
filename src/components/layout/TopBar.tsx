@@ -15,50 +15,74 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 export default function TopBar() {
   const config = getBookConfig();
   const currentPage = useBookStore((s) => s.currentPage);
+  const totalPages = useBookStore((s) => s.totalPages);
   const setPage = useBookStore((s) => s.setPage);
 
+  // Reading progress percentage
+  const progress =
+    totalPages > 1 ? ((currentPage - 1) / (totalPages - 1)) * 100 : 0;
+
   return (
-    <header
-      id="topbar"
-      className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center justify-between px-4 no-print"
-      style={{
-        background:
-          "linear-gradient(135deg, #1e88e5 0%, #42a5f5 50%, #64b5f6 100%)",
-      }}
-    >
-      {/* Left: Logo + Slogan */}
-      <div className="flex items-center gap-3 min-w-0">
-        <img
-          src="/img/logo-icon.png"
-          alt="Logo"
-          className="h-9 w-auto shrink-0"
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = "none";
-          }}
-        />
-        <img
-          src="/img/slogan.png"
-          alt=""
-          className="hidden h-7 w-auto sm:block"
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = "none";
-          }}
-        />
+    <header id="topbar" className="fixed top-0 left-0 right-0 z-50 no-print">
+      {/* Main Bar */}
+      <div
+        className="flex h-11 items-center justify-between pl-1 pr-3"
+        style={{
+          background:
+            "linear-gradient(180deg, #3e9dd8 0%, #2b8bc9 40%, #1d7ab8 100%)",
+        }}
+      >
+        {/* Left: Logo + Branding */}
+        <div className="flex items-center gap-2.5 min-w-0">
+          <img
+            src="/img/logo-icon.png"
+            alt="Logo"
+            className="h-8 w-auto shrink-0"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = "none";
+            }}
+          />
+          <div className="hidden sm:flex flex-col leading-none">
+            <span
+              className="text-[13px] font-bold tracking-wide text-white"
+              style={{ fontFamily: "'Segoe UI', Tahoma, sans-serif" }}
+            >
+              BURLINGTON
+              <span className="text-[#fdd835]">ENGLISH</span>
+              <sup className="text-[7px] ml-0.5 text-white/70">®</sup>
+            </span>
+            <span className="text-[8px] tracking-[0.08em] text-white/70 uppercase mt-px">
+              The Publisher That Cares
+            </span>
+          </div>
+        </div>
+
+        {/* Center: Title */}
+        <h1
+          id="subject-head"
+          className="absolute left-1/2 -translate-x-1/2 text-[15px] font-semibold text-white truncate max-w-[400px] hidden md:block"
+          style={{ fontFamily: "'Segoe UI', Tahoma, sans-serif" }}
+        >
+          {config.subject}
+        </h1>
+
+        {/* Right: Counters */}
+        <div className="flex items-center gap-2 pr-6">
+          <BookmarkDropdown currentPage={currentPage} setPage={setPage} />
+          <HighlightsDropdown setPage={setPage} />
+          <NotesDropdown currentPage={currentPage} setPage={setPage} />
+        </div>
       </div>
 
-      {/* Center: Title */}
-      <h1
-        id="subject-head"
-        className="absolute left-1/2 -translate-x-1/2 text-base font-semibold text-white truncate max-w-[400px] hidden md:block"
-      >
-        {config.subject}
-      </h1>
-
-      {/* Right: Counters */}
-      <div className="flex items-center gap-1">
-        <BookmarkDropdown currentPage={currentPage} setPage={setPage} />
-        <HighlightsDropdown setPage={setPage} />
-        <NotesDropdown currentPage={currentPage} setPage={setPage} />
+      {/* Progress Bar */}
+      <div className="h-[5px] w-full bg-[#1a6da0] relative">
+        <div
+          className="h-full transition-all duration-500 ease-out"
+          style={{
+            width: `${progress}%`,
+            background: "linear-gradient(90deg, #4caf50, #66bb6a, #81c784)",
+          }}
+        />
       </div>
     </header>
   );
@@ -83,10 +107,10 @@ function BookmarkDropdown({
       <button
         id="app-list-bookmark"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-white/80 transition-colors hover:bg-white/20 hover:text-white"
+        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20 hover:text-white"
         title="Bookmarks"
       >
-        <Bookmark size={16} />
+        <Bookmark size={18} />
         <CountBadge count={bookmarks.length} id="total-bookmarks" />
       </button>
 
@@ -126,10 +150,10 @@ function HighlightsDropdown({ setPage }: { setPage: (p: number) => void }) {
       <button
         id="app-list-highlights"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-white/80 transition-colors hover:bg-white/20 hover:text-white"
+        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20 hover:text-white"
         title="Highlights"
       >
-        <Highlighter size={16} />
+        <Highlighter size={18} />
         <CountBadge count={highlightedPages.length} id="total-highlights" />
       </button>
 
@@ -172,10 +196,10 @@ function NotesDropdown({
       <button
         id="app-list-notes"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-white/80 transition-colors hover:bg-white/20 hover:text-white"
+        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20 hover:text-white"
         title="Notes"
       >
-        <StickyNote size={16} />
+        <StickyNote size={18} />
         <CountBadge count={notes.length} id="total-notes" />
       </button>
 
@@ -210,7 +234,7 @@ function CountBadge({ count, id }: { count: number; id: string }) {
   return (
     <span
       id={id}
-      className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-white/25 px-1.5 text-[10px] font-bold text-white"
+      className="inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full border border-white/50 bg-white/20 px-1 text-[10px] font-bold text-white tabular-nums"
     >
       {count}
     </span>
@@ -236,7 +260,7 @@ function DropdownPanel({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -8, scale: 0.96 }}
       transition={{ duration: 0.15 }}
-      className="absolute right-0 top-full mt-2 w-64 rounded-xl border border-border bg-surface shadow-xl overflow-hidden"
+      className="absolute right-0 top-full mt-2 w-64 rounded-xl border border-border bg-surface shadow-xl overflow-hidden z-60"
     >
       <div className="border-b border-border px-4 py-2.5">
         <h4 className="text-sm font-semibold text-on-surface">{title}</h4>
