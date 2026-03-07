@@ -27,8 +27,8 @@ interface DrawingState {
 
 export const useDrawingStore = create<DrawingState>((set, get) => ({
   activeTool: "none",
-  penColor: "#000000",
-  highlightColor: "#facc15",
+  penColor: "#3b82f6", // Blue
+  highlightColor: "#60a5fa", // Light Blue
   penWidth: 2,
   isToolbarOpen: false,
   canvasData: getStorageItem<Record<number, string>>("canvas_data", {}),
