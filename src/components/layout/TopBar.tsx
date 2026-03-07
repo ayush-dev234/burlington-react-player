@@ -4,7 +4,7 @@
 
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bookmark, Highlighter, StickyNote, ChevronRight } from "lucide-react";
+import { Bookmark, Pencil, FileText, ChevronRight } from "lucide-react";
 import { getBookConfig } from "@/config/book.config";
 import { useBookStore } from "@/store/useBookStore";
 import { useBookmarkStore } from "@/store/useBookmarkStore";
@@ -25,33 +25,32 @@ export default function TopBar() {
   return (
     <header id="topbar" className="fixed top-0 left-0 right-0 z-50 no-print">
       {/* Main Bar */}
-      <div
-        className="flex h-11 items-center justify-between pl-1 pr-3"
-        style={{
-          background:
-            "linear-gradient(180deg, #3e9dd8 0%, #2b8bc9 40%, #1d7ab8 100%)",
-        }}
-      >
+      <div className="flex h-11 items-center justify-between bg-[#42a5e8] relative shadow-sm">
+        {/* Slanted White Background */}
+        <div
+          className="absolute left-0 top-0 h-full w-[100px] sm:w-[350px] bg-white z-0"
+          style={{ clipPath: "polygon(0 0, 100% 0, calc(100% - 35px) 100%, 0 100%)" }}
+        />
+
         {/* Left: Logo + Branding */}
-        <div className="flex items-center gap-2.5 min-w-0">
+        <div className="relative z-10 flex items-center gap-2.5 pl-4 min-w-0 h-full">
           <img
             src="/img/logo-icon.png"
             alt="Logo"
-            className="h-8 w-auto shrink-0"
+            className="h-8 w-auto shrink-0 drop-shadow-sm"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
             }}
           />
-          <div className="hidden sm:flex flex-col leading-none">
+          <div className="hidden sm:flex flex-col leading-tight mt-0.5">
             <span
-              className="text-[13px] font-bold tracking-wide text-white"
+              className="text-[14px] font-bold tracking-wide text-[#1A4C84] whitespace-nowrap"
               style={{ fontFamily: "'Segoe UI', Tahoma, sans-serif" }}
             >
-              BURLINGTON
-              <span className="text-[#fdd835]">ENGLISH</span>
-              <sup className="text-[7px] ml-0.5 text-white/70">®</sup>
+              BURLINGTON<span className="text-[#3EA1E1]">ENGLISH</span>
+              <sup className="text-[8px] ml-0.5 text-[#1A4C84]">®</sup>
             </span>
-            <span className="text-[8px] tracking-[0.08em] text-white/70 uppercase mt-px">
+            <span className="text-[8px] font-semibold tracking-[0.08em] text-[#1A4C84] uppercase mt-px whitespace-nowrap">
               The Publisher That Cares
             </span>
           </div>
@@ -60,14 +59,14 @@ export default function TopBar() {
         {/* Center: Title */}
         <h1
           id="subject-head"
-          className="absolute left-1/2 -translate-x-1/2 text-[15px] font-semibold text-white truncate max-w-[400px] hidden md:block"
+          className="absolute z-10 left-1/2 -translate-x-1/2 text-[17px] font-medium text-white shadow-black/10 drop-shadow-sm truncate max-w-[400px] hidden md:block"
           style={{ fontFamily: "'Segoe UI', Tahoma, sans-serif" }}
         >
           {config.subject}
         </h1>
 
         {/* Right: Counters */}
-        <div className="flex items-center gap-2 pr-6">
+        <div className="relative z-30 flex items-center gap-5 pr-20">
           <BookmarkDropdown currentPage={currentPage} setPage={setPage} />
           <HighlightsDropdown setPage={setPage} />
           <NotesDropdown currentPage={currentPage} setPage={setPage} />
@@ -75,7 +74,7 @@ export default function TopBar() {
       </div>
 
       {/* Progress Bar */}
-      <div className="h-[5px] w-full bg-[#1a6da0] relative">
+      <div className="h-[4px] w-full bg-[#1a6da0] relative z-20">
         <div
           className="h-full transition-all duration-500 ease-out"
           style={{
@@ -107,10 +106,10 @@ function BookmarkDropdown({
       <button
         id="app-list-bookmark"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20 hover:text-white"
+        className="flex items-center gap-2 rounded px-1.5 py-1 text-white/90 transition-colors hover:text-white hover:bg-white/10"
         title="Bookmarks"
       >
-        <Bookmark size={18} />
+        <Bookmark size={20} strokeWidth={1.5} />
         <CountBadge count={bookmarks.length} id="total-bookmarks" />
       </button>
 
@@ -150,10 +149,10 @@ function HighlightsDropdown({ setPage }: { setPage: (p: number) => void }) {
       <button
         id="app-list-highlights"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20 hover:text-white"
+        className="flex items-center gap-2 rounded px-1.5 py-1 text-white/90 transition-colors hover:text-white hover:bg-white/10"
         title="Highlights"
       >
-        <Highlighter size={18} />
+        <Pencil size={20} strokeWidth={1.5} />
         <CountBadge count={highlightedPages.length} id="total-highlights" />
       </button>
 
@@ -196,10 +195,10 @@ function NotesDropdown({
       <button
         id="app-list-notes"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/20 hover:text-white"
+        className="flex items-center gap-2 rounded px-1.5 py-1 text-white/90 transition-colors hover:text-white hover:bg-white/10"
         title="Notes"
       >
-        <StickyNote size={18} />
+        <FileText size={20} strokeWidth={1.5} />
         <CountBadge count={notes.length} id="total-notes" />
       </button>
 
@@ -234,7 +233,7 @@ function CountBadge({ count, id }: { count: number; id: string }) {
   return (
     <span
       id={id}
-      className="inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full border border-white/50 bg-white/20 px-1 text-[10px] font-bold text-white tabular-nums"
+      className="inline-flex h-[22px] min-w-[22px] items-center justify-center rounded-[3px] bg-[#0284c7] px-1 text-[13px] font-semibold text-white tabular-nums drop-shadow-sm"
     >
       {count}
     </span>

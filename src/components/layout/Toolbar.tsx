@@ -36,7 +36,7 @@ export default function Toolbar() {
     viewMode,
     setViewMode,
   } = useBookStore();
-  const { setTool } = useDrawingStore();
+  const { activeTool, setTool, toggleToolbar, isToolbarOpen } = useDrawingStore();
   const { soundEnabled, toggleSound } = useSettingsStore();
   const { isFullscreen, toggleFullscreen } = useFullscreen();
   const [pageInput, setPageInput] = useState("");
@@ -56,7 +56,7 @@ export default function Toolbar() {
   return (
     <footer
       id="toolBox"
-      className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex h-14 items-center justify-center gap-1 rounded-2xl bg-white px-3 shadow-xl border border-gray-200 no-print"
+      className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 flex h-11 items-center justify-center gap-1 rounded-full bg-white px-3 shadow-xl border border-gray-200 no-print"
     >
       {/* Table of Contents */}
       <ToolButton
@@ -181,13 +181,35 @@ export default function Toolbar() {
       </ToolButton>
 
       {/* Drawing Tools */}
-      <ToolButton id="app-tool-pen" title="Pen" onClick={() => setTool("pen")}>
+      <ToolButton
+        id="app-tool-pen"
+        title="Pen"
+        active={activeTool === "pen"}
+        onClick={() => {
+          if (activeTool === "pen") {
+            setTool("none");
+            if (isToolbarOpen) toggleToolbar();
+          } else {
+            setTool("pen");
+            if (!isToolbarOpen) toggleToolbar();
+          }
+        }}
+      >
         <Pen size={20} />
       </ToolButton>
       <ToolButton
         id="app-tool-highlight"
         title="Highlighter"
-        onClick={() => setTool("highlighter")}
+        active={activeTool === "highlighter"}
+        onClick={() => {
+          if (activeTool === "highlighter") {
+            setTool("none");
+            if (isToolbarOpen) toggleToolbar();
+          } else {
+            setTool("highlighter");
+            if (!isToolbarOpen) toggleToolbar();
+          }
+        }}
       >
         <Highlighter size={20} />
       </ToolButton>
@@ -198,7 +220,7 @@ export default function Toolbar() {
       <ToolButton
         id="app-tool-thumbnail"
         title="Thumbnails"
-        onClick={() => setActiveModal("thumbnail")}
+        onClick={() => useUIStore.getState().toggleThumbnailStrip()}
       >
         <Image size={20} />
       </ToolButton>
