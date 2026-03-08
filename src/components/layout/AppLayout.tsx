@@ -10,6 +10,7 @@ import TopBar from "./TopBar";
 import Sidebar from "./Sidebar";
 import Toolbar from "./Toolbar";
 import BookViewer from "@/components/book/BookViewer";
+import NotesModal from "@/components/notes/NotesModal";
 import { useUIStore } from "@/store/useUIStore";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
 
@@ -89,6 +90,8 @@ export default function AppLayout() {
           </motion.button>
         )}
       </AnimatePresence>
+
+      <NotesModal />
     </div>
   );
 }
