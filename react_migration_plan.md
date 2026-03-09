@@ -624,13 +624,13 @@ interface BookmarkState {
 - Reads from `useDrawingStore.canvasData` to count pages with data
 
 ### Deliverables
-- [ ] Add, edit, delete notes with modal
-- [ ] Draggable sticky notes on pages
-- [ ] Notes list dropdown with navigation
-- [ ] Bookmark toggle, list, and navigation
-- [ ] Highlight page count from canvas data
-- [ ] All data persisted to localStorage
-- [ ] Counts displayed as badges in TopBar
+- [x] Add, edit, delete notes with modal
+- [x] Draggable sticky notes on pages
+- [x] Notes list dropdown with navigation
+- [x] Bookmark toggle, list, and navigation
+- [x] Highlight page count from canvas data
+- [x] All data persisted to localStorage
+- [x] Counts displayed as badges in TopBar
 
 ---
 
