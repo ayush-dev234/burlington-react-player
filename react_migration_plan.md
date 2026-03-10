@@ -1,3 +1,10 @@
+//to do-
+tracker bar,
+acessibility bar,
+ui
+notes-
+highlight and pen tool
+
 # 🚀 React Migration Plan — Burlington E-Book Player
 
 > **Goal**: Convert the Burlington HTML E-Book Player into a modern, bug-free, fully responsive React application with Tailwind CSS, preserving all existing features and adding new enhancements.

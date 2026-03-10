@@ -29,7 +29,9 @@ export default function TopBar() {
         {/* Slanted White Background */}
         <div
           className="absolute left-0 top-0 h-full w-[100px] sm:w-[350px] bg-white z-0"
-          style={{ clipPath: "polygon(0 0, 100% 0, calc(100% - 35px) 100%, 0 100%)" }}
+          style={{
+            clipPath: "polygon(0 0, 100% 0, calc(100% - 35px) 100%, 0 100%)",
+          }}
         />
 
         {/* Left: Logo + Branding */}

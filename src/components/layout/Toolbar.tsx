@@ -36,7 +36,8 @@ export default function Toolbar() {
     viewMode,
     setViewMode,
   } = useBookStore();
-  const { activeTool, setTool, toggleToolbar, isToolbarOpen } = useDrawingStore();
+  const { activeTool, setTool, toggleToolbar, isToolbarOpen } =
+    useDrawingStore();
   const { soundEnabled, toggleSound } = useSettingsStore();
   const { isFullscreen, toggleFullscreen } = useFullscreen();
   const [pageInput, setPageInput] = useState("");
@@ -70,8 +71,8 @@ export default function Toolbar() {
       <ToolSeparator />
 
       {/* Page Navigation */}
-      <div className="flex items-center gap-2 px-1">
-        <span className="text-sm font-semibold text-gray-800 hidden sm:inline">
+      <div className="flex items-center gap-2 px-1 whitespace-nowrap">
+        <span className="text-sm font-semibold text-gray-800 hidden sm:inline whitespace-nowrap">
           Go to page
         </span>
         {showPageInput ? (
@@ -94,11 +95,11 @@ export default function Toolbar() {
             className="flex items-center gap-2 rounded bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-300"
             title="Go to page"
           >
-            <span className="tabular-nums mar">{
-                 viewMode === "double"
+            <span className="tabular-nums whitespace-nowrap">
+              {viewMode === "double"
                 ? `${currentPage}-${Math.min(currentPage + 1, totalPages)}`
-                : currentPage
-              }</span>
+                : currentPage}
+            </span>
             <span className="text-gray-500 font-normal">/</span>
             <span id="totalPages" className="tabular-nums">
               {totalPages}
