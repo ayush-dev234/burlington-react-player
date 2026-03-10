@@ -91,10 +91,14 @@ export default function Toolbar() {
         ) : (
           <button
             onClick={() => setShowPageInput(true)}
-            className="flex items-center gap-1.5 rounded bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-300"
+            className="flex items-center gap-2 rounded bg-gray-200/80 px-3 py-1 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-300"
             title="Go to page"
           >
-            <span className="tabular-nums">{currentPage}</span>
+            <span className="tabular-nums mar">{
+                 viewMode === "double"
+                ? `${currentPage}-${Math.min(currentPage + 1, totalPages)}`
+                : currentPage
+              }</span>
             <span className="text-gray-500 font-normal">/</span>
             <span id="totalPages" className="tabular-nums">
               {totalPages}

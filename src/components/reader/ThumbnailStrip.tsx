@@ -29,7 +29,7 @@ export default function ThumbnailStrip() {
   useEffect(() => {
     if (!emblaApi || !isThumbnailStripVisible) return;
     // Scroll to the current page index (0-based)
-    const index = currentPage - 1;
+    const index = currentPage - 1
     emblaApi.scrollTo(index, false);
   }, [currentPage, emblaApi, isThumbnailStripVisible]);
 
@@ -49,9 +49,14 @@ export default function ThumbnailStrip() {
   // Navigate to the clicked page
   const handleThumbnailClick = useCallback(
     (pageNum: number) => {
+    if (viewMode === "double") {
+      const spreadStart = Math.max(1, pageNum % 2 === 0 ? pageNum : pageNum - 1);
+      setPage(spreadStart);
+    } else {
       setPage(pageNum);
-    },
-    [setPage],
+    }
+  },
+  [setPage, viewMode],
   );
 
   return (

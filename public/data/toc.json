@@ -1,45 +1,48 @@
 [
-  { "title": "Unit 1: Nouns", "page": 9, "unit": 1, "isUnitHeader": true },
-  { "title": "Revision of Nouns", "page": 9 },
-  { "title": "Material Nouns", "page": 11 },
-  { "title": "Nouns: Gender", "page": 13 },
-  { "title": "Singular and Plural Forms", "page": 17 },
-  { "title": "Noun Cases", "page": 22 },
+    { "title": "Unit-1 Naming Words", "page": 7, "isUnitHeader": true },
+    { "title": "Naming Words: Common and Special", "page": 13 },
+    { "title": "Naming Words: One and More Than One", "page": 16 },
 
-  { "title": "Unit 2: Articles — a / an / the", "page": 27, "unit": 2, "isUnitHeader": true },
-  { "title": "Revision of Articles", "page": 27 },
-  { "title": "Articles as Demonstrative Adjectives", "page": 28 },
-  { "title": "Articles and Their Types", "page": 29 },
+    { "title": "Unit-2 a, an", "page": 21, "isUnitHeader": true },
 
-  { "title": "Unit 3: Pronouns", "page": 35, "unit": 3, "isUnitHeader": true },
-  { "title": "Revision of Pronouns", "page": 35 },
-  { "title": "Reflexive and Emphatic Pronouns", "page": 36 },
-  { "title": "Types of Pronouns", "page": 37 },
-  { "title": "Pronoun Cases", "page": 40 },
-  { "title": "Pronoun-Antecedent Agreement", "page": 41 },
+    { "title": "Unit-3 Words Used in Place of Naming Words", "page": 27,  "isUnitHeader": true},
+    { "title": "I, you, he, she, it", "page": 28 },
+    { "title": "we, you, they", "page": 31 },
 
-  { "title": "Unit 4: Verbs", "page": 47, "unit": 4, "isUnitHeader": true },
-  { "title": "Revision of Subject-Verb Agreement", "page": 47 },
-  { "title": "Subject-Verb Agreement", "page": 48 },
-  { "title": "Know More About Verbs", "page": 49 },
-  { "title": "Modals & Conditionals", "page": 57 },
-  { "title": "Active and Passive Voice", "page": 64 },
+    { "title": "Unit-4 Describing Words", "page": 35, "isUnitHeader": true },
 
-  { "title": "Unit 5: Tenses", "page": 71, "unit": 5, "isUnitHeader": true },
-  { "title": "Revision of Present Form", "page": 71 },
-  { "title": "Present Forms", "page": 73 },
-  { "title": "Revision of Past Forms", "page": 77 },
-  { "title": "Past Forms", "page": 79 },
-  { "title": "Revision of Future Forms", "page": 82 },
-  { "title": "Future Forms", "page": 83 },
+    { "title": "Unit-5 this / that / these / those", "page": 41, "isUnitHeader": true },
 
-  { "title": "Unit 6: Adjectives", "page": 89, "unit": 6, "isUnitHeader": true },
-  { "title": "Revision of Adjectives", "page": 89 },
-  { "title": "Understanding Sentences and Adjective Use", "page": 91 },
+    { "title": "Unit-6 Doing and Helping Words", "page": 47, "isUnitHeader": true },
+    { "title": "Doing Words", "page": 47 },
+    { "title": "am / is / are", "page": 51 },
+    { "title": "has / have", "page": 54 },
 
-  { "title": "Unit 7: Adverbs", "page": 101, "unit": 7, "isUnitHeader": true },
-  { "title": "Revision of Adverbs", "page": 101 },
-  { "title": "Types of Adverbs", "page": 103 },
+    { "title": "Unit-7 am / is / are + Doing Word + -ing", "page": 59, "isUnitHeader": true },
 
-  { "title": "Unit 8: Prepositions", "page": 108, "unit": 8, "isUnitHeader": true }
-]
+    { "title": "Unit-8 Position Words", "page": 65, "isUnitHeader": true },
+
+    { "title": "Unit-9 Joining Word: and", "page": 71, "isUnitHeader": true },
+
+    { "title": "Unit-10 The Sentence", "page": 77, "isUnitHeader": true },
+
+    { "title": " Unit-11 Special Marks", "page": 83, "isUnitHeader": true },
+
+    { "title": "Unit-12 Understanding Words", "page": 89, "isUnitHeader": true },
+    { "title": "Forming Words", "page": 89 },
+    { "title": "Rhyming Words", "page": 90 },
+    { "title": "Opposites", "page": 91 },
+    { "title": "Alphabetical Order", "page": 92 },
+
+    { "title": "Reading", "page": 93, "isUnitHeader": true },
+    { "title": "Picture Comprehension – Nia's Classroom", "page": 93 },
+    { "title": "Picture Reading – Rahul and His Football", "page": 94 },
+    { "title": "Who Has Seen the Wind?", "page": 95 },
+    { "title": "Varun and His New Bag", "page": 97 },
+
+    { "title": "Writing", "page": 99, "isUnitHeader": true },
+    { "title": "All About Me!", "page": 99 },
+    { "title": "Answering Questions", "page": 100 },
+    { "title": "My Favourite Season", "page": 101 },
+    { "title": "Picture Composition – A Fun Day", "page": 102 }
+  ]

@@ -19,10 +19,15 @@ export default function NotesModal() {
 
   const currentPage = useBookStore((s) => s.currentPage);
   const totalPages  = useBookStore((s) => s.totalPages);
-  const { notes, addNote, updateNote } = useNotesStore();
+  // const { notes, addNote, updateNote } = useNotesStore();
+  const { addNote, updateNote } = useNotesStore();
+  const [selectedPage, setSelectedPage] = useState(currentPage);
+
+  const notes = useNotesStore((s) => s.notes);
+  // const notesForPage = notes.filter((n) => n.pageNum === selectedPage);
 
   // Which page we're editing a note for
-  const [selectedPage, setSelectedPage] = useState(currentPage);
+  
   // The text in the textarea
   const [text, setText] = useState("");
   // If we're editing an existing note, store its id
@@ -32,36 +37,36 @@ export default function NotesModal() {
 
   // When the modal opens, sync to current page and load existing note if any
   useEffect(() => {
-    if (!isOpen) return;
+  if (!isOpen) return;
 
-    const page = currentPage;
-    setSelectedPage(page);
+  const page = currentPage;
+  setSelectedPage(page);
 
-    const existing = notes.find((n) => n.pageNum === page);
-    if (existing) {
-      setText(existing.text);
-      setEditingId(existing.id);
-    } else {
-      setText("");
-      setEditingId(null);
-    }
+  const existing =notes.find((n) => n.pageNum === selectedPage);// pick first note for simplicity
+  if (existing) {
+    setText(existing.text);
+    setEditingId(existing.id);
+  } else {
+    setText("");
+    setEditingId(null);
+  }
 
-    // Focus textarea after a tick so the modal has rendered
-    setTimeout(() => textareaRef.current?.focus(), 50);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, currentPage]);
+  setTimeout(() => textareaRef.current?.focus(), 50);
+},  [isOpen, currentPage, selectedPage]);
 
   // When user switches the page dropdown, load note for that page
   const handlePageChange = (page: number) => {
     setSelectedPage(page);
-    const existing = notes.find((n) => n.pageNum === page);
-    if (existing) {
-      setText(existing.text);
-      setEditingId(existing.id);
-    } else {
-      setText("");
-      setEditingId(null);
-    }
+
+  const existing = useNotesStore.getState().getNotesForPage(page)[0];
+
+  if (existing) {
+    setText(existing.text);
+    setEditingId(existing.id);
+  } else {
+    setText("");
+    setEditingId(null);
+  }
   };
 
   const handleSave = () => {
