@@ -27,6 +27,7 @@ export default function Sidebar() {
   }
 
   const handleNavigation = (page: number) => {
+    console.log(" page number : ",page)
     setPage(page);
     setSidebarOpen(false);
   };

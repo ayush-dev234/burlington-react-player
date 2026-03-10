@@ -6,6 +6,7 @@ import { loadPageLinks } from "@/config/pages.config";
 import { useBookStore } from "@/store/useBookStore";
 import { useUIStore } from "@/store/useUIStore";
 import { initStoragePrefix, initPageAspectRatio } from "@/utils/constants";
+import AccessibilityPanel from "./accessibility/AccessibilityPanel";
 import type { BookConfig } from "@/types/book.types";
 import PreLoader from "@/components/layout/PreLoader";
 import AppLayout from "@/components/layout/AppLayout";
@@ -110,6 +111,7 @@ function App() {
 
       {/* Main App */}
       <AppLayout />
+      {/* <AccessibilityPanel /> */}
     </>
   );
 }

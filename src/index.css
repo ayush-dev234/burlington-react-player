@@ -216,3 +216,20 @@ body {
     display: none !important;
   }
 }
+.high-contrast {
+  filter: contrast(140%) brightness(110%);
+}
+
+.large-text {
+  font-size: 1.25rem;
+}
+
+.text-spacing {
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+}
+
+.reduce-motion * {
+  animation: none !important;
+  transition: none !important;
+}
