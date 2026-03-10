@@ -1,22 +1,15 @@
 [
     { "title": "Unit-1 Naming Words", "page": 7, "isUnitHeader": true },
-    { "title": "Naming Words: Common and Special", "page": 13 },
-    { "title": "Naming Words: One and More Than One", "page": 16 },
 
     { "title": "Unit-2 a, an", "page": 21, "isUnitHeader": true },
 
     { "title": "Unit-3 Words Used in Place of Naming Words", "page": 27,  "isUnitHeader": true},
-    { "title": "I, you, he, she, it", "page": 28 },
-    { "title": "we, you, they", "page": 31 },
 
     { "title": "Unit-4 Describing Words", "page": 35, "isUnitHeader": true },
 
     { "title": "Unit-5 this / that / these / those", "page": 41, "isUnitHeader": true },
 
     { "title": "Unit-6 Doing and Helping Words", "page": 47, "isUnitHeader": true },
-    { "title": "Doing Words", "page": 47 },
-    { "title": "am / is / are", "page": 51 },
-    { "title": "has / have", "page": 54 },
 
     { "title": "Unit-7 am / is / are + Doing Word + -ing", "page": 59, "isUnitHeader": true },
 
@@ -29,20 +22,9 @@
     { "title": " Unit-11 Special Marks", "page": 83, "isUnitHeader": true },
 
     { "title": "Unit-12 Understanding Words", "page": 89, "isUnitHeader": true },
-    { "title": "Forming Words", "page": 89 },
-    { "title": "Rhyming Words", "page": 90 },
-    { "title": "Opposites", "page": 91 },
-    { "title": "Alphabetical Order", "page": 92 },
 
-    { "title": "Reading", "page": 93, "isUnitHeader": true },
-    { "title": "Picture Comprehension – Nia's Classroom", "page": 93 },
-    { "title": "Picture Reading – Rahul and His Football", "page": 94 },
-    { "title": "Who Has Seen the Wind?", "page": 95 },
-    { "title": "Varun and His New Bag", "page": 97 },
+    { "title": "Unit 13 Reading", "page": 93, "isUnitHeader": true },
 
-    { "title": "Writing", "page": 99, "isUnitHeader": true },
-    { "title": "All About Me!", "page": 99 },
-    { "title": "Answering Questions", "page": 100 },
-    { "title": "My Favourite Season", "page": 101 },
-    { "title": "Picture Composition – A Fun Day", "page": 102 }
+    { "title": "Unit 14 Writing", "page": 99, "isUnitHeader": true }
+
   ]
