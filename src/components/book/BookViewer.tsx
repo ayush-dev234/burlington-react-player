@@ -5,10 +5,11 @@ import React, {
   useState,
   useMemo,
 } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
 import { useBookStore } from "@/store/useBookStore";
 import { useBookmarkStore } from "@/store/useBookmarkStore";
 import { usePageFlipSound } from "@/hooks/usePageFlipSound";
+import { useResponsive } from "@/hooks/useResponsive";
 import { getPageImagePath } from "@/utils/pageCalculations";
 import { PAGE_ASPECT_RATIO } from "@/utils/constants";
 import type { InteractiveItem } from "@/types/book.types";
@@ -50,10 +51,11 @@ interface ModalState {
 }
 
 export default function BookViewer() {
-  const { currentPage, totalPages, viewMode, zoomLevel, setPage, nextPage, prevPage } =
+  const { currentPage, totalPages, viewMode, zoomLevel, setPage, nextPage, prevPage, setViewMode } =
     useBookStore();
 
   const { playFlip } = usePageFlipSound();
+  const { isMobile } = useResponsive();
   const containerRef = useRef<HTMLDivElement>(null);
   const bookRef = useRef<any>(null);
   const [containerSize, setContainerSize] = useState({ w: 0, h: 0 });
@@ -75,6 +77,13 @@ export default function BookViewer() {
     }
     prevPageRef.current = currentPage;
   }, [currentPage]);
+
+  // ── Auto switch to single page on mobile ───────────────────────────
+  useEffect(() => {
+    if (isMobile && viewMode === "double") {
+      setViewMode("single");
+    }
+  }, [isMobile, viewMode, setViewMode]);
 
   // ── Interactive modal state ────────────────────────────────────────
   const [modal, setModal] = useState<ModalState>({ type: null, item: null });
@@ -106,20 +115,13 @@ export default function BookViewer() {
   }, [drawingTool]);
 
   // ── Force remount key ──────────────────────────────────────────────
-  // react-pageflip does NOT support dynamically changing usePortrait or
-  // width/height after mount. We use a key that includes viewMode + dimensions
-  // to force a full unmount/remount whenever these change.
-  // We also capture the currentPage at remount time so the book opens to the
-  // correct page via startPage.
   const [remountKey, setRemountKey] = useState(0);
   const startPageRef = useRef(0); // 0-indexed start page for react-pageflip
 
   // When viewMode changes, trigger a remount and preserve the current page
   useEffect(() => {
-    // Reset flipbook ready state since we're about to remount
     flipbookReadyRef.current = false;
     suppressSyncRef.current = false;
-    // Store the current page so the new FlipBook instance opens at the right spot
     startPageRef.current = currentPage - 1;
     setRemountKey((k) => k + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -149,7 +151,8 @@ export default function BookViewer() {
     if (w === 0 || h === 0) return { pageWidth: 0, pageHeight: 0 };
 
     const isDouble = viewMode === "double";
-    const navButtonSpace = 48;
+    // Smaller nav button space on mobile
+    const navButtonSpace = isMobile ? 24 : 48;
     const availableWidth = w - navButtonSpace;
     const availableHeight = h;
 
@@ -168,7 +171,7 @@ export default function BookViewer() {
       pageWidth: Math.floor(pageWidth),
       pageHeight: Math.floor(pageHeight),
     };
-  }, [containerSize, viewMode]);
+  }, [containerSize, viewMode, isMobile]);
 
   const handlePrev = useCallback(() => {
     prevPage();
@@ -178,18 +181,14 @@ export default function BookViewer() {
     nextPage();
   }, [nextPage]);
 
-  // ── Sync store → flipbook (for toolbar "go to page", sidebar TOC clicks, etc.) ──
+  // ── Sync store → flipbook ──────────────────────────────────────────
   useEffect(() => {
-    // Only applies to double mode. Single mode is natively driven by React state now.
     if (viewMode !== "double") return;
-
-    // If this change came from a flipbook event, skip the sync
     if (suppressSyncRef.current) {
       suppressSyncRef.current = false;
       return;
     }
     
-    // Use a small timeout to ensure flipbook is completely mounted
     const timer = setTimeout(() => {
       const pf = bookRef.current?.pageFlip();
       if (!pf) return;
@@ -199,7 +198,6 @@ export default function BookViewer() {
         const currentIndex = pf.getCurrentPageIndex();
         
         if (typeof currentIndex === 'number' && currentIndex !== targetIndex) {
-          // Use the built-in flip() method for animated 2-page folds
           if (typeof pf.flip === 'function') {
             pf.flip(targetIndex);
           } else {
@@ -214,19 +212,14 @@ export default function BookViewer() {
     return () => clearTimeout(timer);
   }, [currentPage, viewMode]);
 
-  // ── Handle flipbook page changes (internal flips by user) ─────────
+  // ── Handle flipbook page changes ──────────────────────────────────
   const onPage = useCallback(
     (e: any) => {
-      // e.data is 0-indexed page number from react-pageflip
       const newPage = e.data + 1;
-
-      // Mark flipbook as ready after first event
       if (!flipbookReadyRef.current) {
         flipbookReadyRef.current = true;
       }
-
       if (newPage !== currentPage) {
-        // Suppress the sync effect so it doesn't echo back to the flipbook
         suppressSyncRef.current = true;
         setPage(newPage);
       }
@@ -248,10 +241,46 @@ export default function BookViewer() {
     return () => window.removeEventListener("keydown", handler);
   }, [handlePrev, handleNext]);
 
+  // ── Touch swipe gestures (mobile) ─────────────────────────────────
+  useEffect(() => {
+    if (!isMobile) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (!e.touches[0]) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (!e.changedTouches[0]) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      // Only trigger if horizontal swipe dominates and exceeds threshold
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        if (dx < 0) {
+          handleNext(); // swipe left → next page
+        } else {
+          handlePrev(); // swipe right → prev page
+        }
+      }
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [isMobile, handlePrev, handleNext]);
+
   // ── Determine translateX offset for centering cover/back ───────────
   const translateOffset = useMemo(() => {
     if (viewMode !== "double") return "0%";
-
     const singleStatus = isCoverOrBack(currentPage, totalPages);
     if (singleStatus === "cover") return "-25%";
     if (singleStatus === "back") return "25%";
@@ -269,6 +298,7 @@ export default function BookViewer() {
         direction="prev"
         onClick={handlePrev}
         disabled={currentPage <= 1}
+        isMobile={isMobile}
       />
 
       {/* Book Container */}
@@ -353,7 +383,7 @@ export default function BookViewer() {
             </div>
           )}
 
-        {/* Drawing canvas overlay — sits on top of the book, outside react-pageflip */}
+        {/* Drawing canvas overlay */}
         <DrawingCanvas />
       </div>
 
@@ -362,6 +392,7 @@ export default function BookViewer() {
         direction="next"
         onClick={handleNext}
         disabled={currentPage >= totalPages}
+        isMobile={isMobile}
       />
 
       <BookmarkCorner page={currentPage} setPage={setPage} />
@@ -426,21 +457,34 @@ const PageImage = React.forwardRef<HTMLDivElement, PageImageProps>(
         className="page bg-white relative overflow-hidden flex items-center justify-center border-x border-gray-100 cursor-pointer"
         onClick={() => onPageClick?.(pageNum)}
       >
+        {/* Loading skeleton with shimmer */}
         {!loaded && !error && (
-          <div className="absolute inset-0 animate-pulse bg-gray-100" />
+          <div className="absolute inset-0 skeleton" />
         )}
 
+        {/* Error state with retry */}
         {error && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 text-gray-400">
-            <div className="text-3xl mb-2">📄</div>
-            <span className="text-sm">Page {pageNum}</span>
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 text-gray-400 gap-2">
+            <div className="text-3xl mb-1">📄</div>
+            <span className="text-sm font-medium">Page {pageNum}</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setError(false);
+                setLoaded(false);
+              }}
+              className="flex items-center gap-1.5 mt-1 text-xs text-brand-500 hover:text-brand-700 transition-colors"
+            >
+              <RefreshCw size={12} />
+              Retry
+            </button>
           </div>
         )}
 
         <img
           src={src}
           alt={`Page ${pageNum}`}
-          className={`h-full w-full object-contain pointer-events-none transition-opacity duration-300 ${
+          className={`h-full w-full object-contain pointer-events-none transition-opacity duration-500 ${
             loaded ? "opacity-100" : "opacity-0"
           }`}
           onLoad={() => setLoaded(true)}
@@ -452,7 +496,7 @@ const PageImage = React.forwardRef<HTMLDivElement, PageImageProps>(
         <PageOverlay pageNum={pageNum} onItemClick={onItemClick} />
 
         {/* Page number overlay */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/40 px-3 py-0.5 text-xs text-white backdrop-blur-sm shadow-sm opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
+        <div className="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/40 px-2.5 sm:px-3 py-0.5 text-[10px] sm:text-xs text-white backdrop-blur-sm shadow-sm opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none">
           {pageNum}
         </div>
       </div>
@@ -467,10 +511,12 @@ function NavButton({
   direction,
   onClick,
   disabled,
+  isMobile,
 }: {
   direction: "prev" | "next";
   onClick: () => void;
   disabled: boolean;
+  isMobile: boolean;
 }) {
   const Icon = direction === "prev" ? ChevronLeft : ChevronRight;
   const id = direction === "prev" ? "ebook-prev" : "ebook-next";
@@ -480,12 +526,14 @@ function NavButton({
       id={id}
       onClick={onClick}
       disabled={disabled}
-      className={`group z-50 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/80 text-gray-600 shadow-md backdrop-blur-md transition-all hover:bg-white hover:text-brand-600 hover:shadow-lg active:scale-90 disabled:opacity-30 disabled:pointer-events-none ${
-        direction === "prev" ? "ml-2 mr-3" : "ml-3 mr-2"
+      className={`group z-50 flex shrink-0 items-center justify-center rounded-full bg-white/80 text-gray-600 shadow-md backdrop-blur-md transition-all duration-200 hover:bg-white hover:text-brand-600 hover:shadow-lg active:scale-90 disabled:opacity-30 disabled:pointer-events-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+        isMobile
+          ? `h-8 w-8 ${direction === "prev" ? "ml-1 mr-1" : "ml-1 mr-1"}`
+          : `h-12 w-12 ${direction === "prev" ? "ml-2 mr-3" : "ml-3 mr-2"}`
       }`}
       title={direction === "prev" ? "Previous" : "Next"}
     >
-      <Icon size={26} strokeWidth={2.5} />
+      <Icon size={isMobile ? 18 : 26} strokeWidth={2.5} />
     </button>
   );
 }
@@ -505,14 +553,14 @@ function BookmarkCorner({
     <button
       id="takeBookmark"
       onClick={() => toggle(page)}
-      className={`absolute top-4 right-8 z-50 transition-all duration-200 ${
+      className={`absolute top-3 right-4 sm:top-4 sm:right-8 z-50 transition-all duration-300 ${
         isBooked
           ? "text-yellow-500 drop-shadow-md scale-110"
           : "text-gray-400 hover:text-yellow-400 hover:scale-110"
       }`}
       title="Toggle bookmark"
     >
-      <svg width={24} height={32} viewBox="0 0 28 36" fill="currentColor">
+      <svg width={20} height={28} viewBox="0 0 28 36" fill="currentColor" className="sm:w-6 sm:h-8">
         <path d="M0 0h28v36l-14-8-14 8V0z" />
       </svg>
     </button>

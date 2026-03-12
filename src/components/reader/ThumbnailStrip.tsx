@@ -67,9 +67,9 @@ export default function ThumbnailStrip() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 120, opacity: 0 }}
           transition={{ type: "spring", damping: 28, stiffness: 300 }}
-          className="fixed bottom-20 left-1/2 -translate-x-1/2 z-40 w-[90vw] max-w-4xl"
+          className="fixed bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 z-40 w-[95vw] sm:w-[90vw] max-w-4xl"
         >
-          <div className="relative flex items-center gap-2 rounded-2xl bg-white/95 px-3 py-3 shadow-2xl border border-gray-200/60 backdrop-blur-md">
+          <div className="relative flex items-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-2xl bg-white/95 px-2 sm:px-3 py-2 sm:py-3 shadow-2xl border border-gray-200/60 backdrop-blur-xl">
             {/* Close button */}
             <button
               onClick={toggleThumbnailStrip}

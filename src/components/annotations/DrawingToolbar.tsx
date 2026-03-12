@@ -11,6 +11,7 @@ import { X, Pen, Highlighter, Undo2, Trash2, ChevronDown } from "lucide-react";
 import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { useDrawingStore } from "@/store/useDrawingStore";
 import { useBookStore } from "@/store/useBookStore";
+import { useResponsive } from "@/hooks/useResponsive";
 import { PEN_PRESETS, HIGHLIGHTER_PRESETS } from "@/types/drawing.types";
 import { Canvas as FabricCanvas } from "fabric";
 
@@ -33,6 +34,7 @@ export default function DrawingToolbar() {
   } = useDrawingStore();
 
   const { currentPage, setPage } = useBookStore();
+  const { isMobile } = useResponsive();
   const [showConfirm, setShowConfirm] = useState(false);
   const [showColorPicker, setShowColorPicker] = useState(false);
   const colorPickerRef = useRef<HTMLDivElement>(null);
@@ -138,11 +140,15 @@ export default function DrawingToolbar() {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ x: -280, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -280, opacity: 0 }}
+          initial={isMobile ? { y: 300, opacity: 0 } : { x: -280, opacity: 0 }}
+          animate={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
+          exit={isMobile ? { y: 300, opacity: 0 } : { x: -280, opacity: 0 }}
           transition={{ type: "spring", damping: 26, stiffness: 300 }}
-          className="fixed top-[70px] left-4 z-50 w-[260px]"
+          className={`fixed z-55 ${
+            isMobile
+              ? "bottom-14 left-2 right-2 w-auto"
+              : "top-[70px] left-4 w-[260px]"
+          }`}
           style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
         >
           {/* Main Toolbar Container - Light theme, slight shadow, squarish corners */}

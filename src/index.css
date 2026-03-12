@@ -233,3 +233,71 @@ body {
   animation: none !important;
   transition: none !important;
 }
+
+/* --- Responsive Utilities --- */
+
+/* Touch optimization for mobile */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Overscroll containment */
+#root {
+  overscroll-behavior: contain;
+}
+
+/* Safe area insets for notched devices */
+.fixed.bottom-3 {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+header.fixed {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* Improved skeleton shimmer */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e8e8e8 37%,
+    #f0f0f0 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+/* Smooth scrolling for all scroll containers */
+.overflow-y-auto,
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Responsive text selection */
+.select-none img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Small screen toolbar adjustments */
+@media (max-width: 640px) {
+  #toolBox {
+    bottom: 8px !important;
+  }
+}

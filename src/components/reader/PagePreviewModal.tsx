@@ -58,16 +58,16 @@ export default function PagePreviewModal({
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.92, opacity: 0, y: 30 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative flex flex-col rounded-xl overflow-hidden shadow-2xl"
+            className="relative flex flex-col rounded-none sm:rounded-xl overflow-hidden shadow-2xl w-full sm:w-auto"
             style={{
-              width: "min(90vw, 820px)",
-              maxHeight: "90vh",
+              width: "min(96vw, 820px)",
+              maxHeight: "93vh",
             }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header bar (brand color) */}
-            <div className="flex items-center justify-between bg-[#0abab5] px-4 py-2 shrink-0">
-              <span className="text-white font-semibold text-sm">
+            <div className="flex items-center justify-between bg-[#0abab5] px-3 sm:px-4 py-2 shrink-0">
+              <span className="text-white font-semibold text-xs sm:text-sm">
                 Page {pageNum}
               </span>
 
