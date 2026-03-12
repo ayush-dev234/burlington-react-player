@@ -1,6 +1,10 @@
 // ============================================
 // TopBar — Header with logo, title, counters
 // ============================================
+// Responsive: icon-only counters on mobile,
+// full branding visible on sm+, title on md+.
+// Glassmorphism effect, smooth transitions.
+// ============================================
 
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -28,18 +32,18 @@ export default function TopBar() {
       <div className="flex h-11 items-center justify-between bg-[#42a5e8] relative shadow-sm">
         {/* Slanted White Background */}
         <div
-          className="absolute left-0 top-0 h-full w-[100px] sm:w-[350px] bg-white z-0"
+          className="absolute left-0 top-0 h-full w-[80px] sm:w-[350px] bg-white z-0 transition-all duration-300"
           style={{
             clipPath: "polygon(0 0, 100% 0, calc(100% - 35px) 100%, 0 100%)",
           }}
         />
 
         {/* Left: Logo + Branding */}
-        <div className="relative z-10 flex items-center gap-2.5 pl-4 min-w-0 h-full">
+        <div className="relative z-10 flex items-center gap-2 sm:gap-2.5 pl-3 sm:pl-4 min-w-0 h-full">
           <img
             src="/img/logo-icon.png"
             alt="Logo"
-            className="h-8 w-auto shrink-0 drop-shadow-sm"
+            className="h-7 sm:h-8 w-auto shrink-0 drop-shadow-sm transition-all duration-200"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
             }}
@@ -61,14 +65,14 @@ export default function TopBar() {
         {/* Center: Title */}
         <h1
           id="subject-head"
-          className="absolute z-10 left-1/2 -translate-x-1/2 text-[17px] font-medium text-white shadow-black/10 drop-shadow-sm truncate max-w-[400px] hidden md:block"
+          className="absolute z-10 left-1/2 -translate-x-1/2 text-[14px] md:text-[17px] font-medium text-white shadow-black/10 drop-shadow-sm truncate max-w-[180px] sm:max-w-[300px] md:max-w-[400px] hidden sm:block transition-all duration-300"
           style={{ fontFamily: "'Segoe UI', Tahoma, sans-serif" }}
         >
           {config.subject}
         </h1>
 
         {/* Right: Counters */}
-        <div className="relative z-30 flex items-center gap-5 pr-20">
+        <div className="relative z-30 flex items-center gap-2 sm:gap-3 md:gap-5 pr-4 sm:pr-6 md:pr-20">
           <BookmarkDropdown currentPage={currentPage} setPage={setPage} />
           <HighlightsDropdown setPage={setPage} />
           <NotesDropdown currentPage={currentPage} setPage={setPage} />
@@ -108,10 +112,10 @@ function BookmarkDropdown({
       <button
         id="app-list-bookmark"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 rounded px-1.5 py-1 text-white/90 transition-colors hover:text-white hover:bg-white/10"
+        className="flex items-center gap-1.5 sm:gap-2 rounded px-1 sm:px-1.5 py-1 text-white/90 transition-all duration-200 hover:text-white hover:bg-white/10 active:scale-95"
         title="Bookmarks"
       >
-        <Bookmark size={20} strokeWidth={1.5} />
+        <Bookmark size={18} strokeWidth={1.5} className="sm:w-5 sm:h-5" />
         <CountBadge count={bookmarks.length} id="total-bookmarks" />
       </button>
 
@@ -151,10 +155,10 @@ function HighlightsDropdown({ setPage }: { setPage: (p: number) => void }) {
       <button
         id="app-list-highlights"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 rounded px-1.5 py-1 text-white/90 transition-colors hover:text-white hover:bg-white/10"
+        className="flex items-center gap-1.5 sm:gap-2 rounded px-1 sm:px-1.5 py-1 text-white/90 transition-all duration-200 hover:text-white hover:bg-white/10 active:scale-95"
         title="Highlights"
       >
-        <Pencil size={20} strokeWidth={1.5} />
+        <Pencil size={18} strokeWidth={1.5} className="sm:w-5 sm:h-5" />
         <CountBadge count={highlightedPages.length} id="total-highlights" />
       </button>
 
@@ -197,10 +201,10 @@ function NotesDropdown({
       <button
         id="app-list-notes"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 rounded px-1.5 py-1 text-white/90 transition-colors hover:text-white hover:bg-white/10"
+        className="flex items-center gap-1.5 sm:gap-2 rounded px-1 sm:px-1.5 py-1 text-white/90 transition-all duration-200 hover:text-white hover:bg-white/10 active:scale-95"
         title="Notes"
       >
-        <FileText size={20} strokeWidth={1.5} />
+        <FileText size={18} strokeWidth={1.5} className="sm:w-5 sm:h-5" />
         <CountBadge count={notes.length} id="total-notes" />
       </button>
 
@@ -235,7 +239,7 @@ function CountBadge({ count, id }: { count: number; id: string }) {
   return (
     <span
       id={id}
-      className="inline-flex h-[22px] min-w-[22px] items-center justify-center rounded-[3px] bg-[#0284c7] px-1 text-[13px] font-semibold text-white tabular-nums drop-shadow-sm"
+      className="inline-flex h-[20px] sm:h-[22px] min-w-[20px] sm:min-w-[22px] items-center justify-center rounded-[3px] bg-[#0284c7] px-1 text-[11px] sm:text-[13px] font-semibold text-white tabular-nums drop-shadow-sm transition-all duration-200"
     >
       {count}
     </span>
@@ -261,7 +265,7 @@ function DropdownPanel({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -8, scale: 0.96 }}
       transition={{ duration: 0.15 }}
-      className="absolute right-0 top-full mt-2 w-64 rounded-xl border border-border bg-surface shadow-xl overflow-hidden z-60"
+      className="absolute right-0 top-full mt-2 w-56 sm:w-64 rounded-xl border border-border bg-white/95 backdrop-blur-xl shadow-2xl overflow-hidden z-60"
     >
       <div className="border-b border-border px-4 py-2.5">
         <h4 className="text-sm font-semibold text-on-surface">{title}</h4>
@@ -270,8 +274,11 @@ function DropdownPanel({
         {hasChildren ? (
           <ul className="py-1">{children}</ul>
         ) : (
-          <div className="px-4 py-6 text-center text-sm text-on-surface-muted">
-            {emptyText}
+          <div className="px-4 py-6 text-center">
+            <div className="text-2xl mb-2 opacity-40">
+              {title === "Bookmarks" ? "🔖" : title === "Notes" ? "📝" : "✏️"}
+            </div>
+            <span className="text-sm text-on-surface-muted">{emptyText}</span>
           </div>
         )}
       </div>
@@ -292,7 +299,7 @@ function DropdownItem({
     <li>
       <button
         onClick={onClick}
-        className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm transition-colors hover:bg-surface-bright"
+        className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm transition-all duration-200 hover:bg-surface-bright active:scale-[0.98]"
       >
         <ChevronRight size={14} className="shrink-0 text-brand-500" />
         <div className="min-w-0">

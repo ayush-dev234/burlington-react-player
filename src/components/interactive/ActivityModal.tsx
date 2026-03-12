@@ -29,6 +29,9 @@ export default function ActivityModal({
   const { width, height } = parseSize(size);
   const [isFullscreen, setIsFullscreen] = useState(true);
 
+  // Always use fullscreen on mobile
+  const isMobileDevice = typeof window !== 'undefined' && window.innerWidth < 768;
+
   // Close on Escape
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -65,21 +68,21 @@ export default function ActivityModal({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center"
+      className="fixed inset-0 z-9999 flex items-center justify-center"
       style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
     >
       <div
         className="relative flex flex-col bg-white shadow-2xl overflow-hidden transition-all duration-300"
         style={
-          isFullscreen
+          isFullscreen || isMobileDevice
             ? {
                 width: "100vw",
                 height: "100vh",
                 borderRadius: 0,
               }
             : {
-                width: Math.min(width + 2, window.innerWidth - 20),
-                height: Math.min(height + 42, window.innerHeight - 20),
+                width: Math.min(width + 2, window.innerWidth - 40),
+                height: Math.min(height + 42, window.innerHeight - 40),
                 maxWidth: "96vw",
                 maxHeight: "96vh",
                 borderRadius: 8,
@@ -87,7 +90,7 @@ export default function ActivityModal({
         }
       >
         {/* Header bar — matches Burlington player style */}
-        <div className="flex items-center justify-between bg-gradient-to-r from-[#2962A5] to-[#3776C4] px-3 py-1.5 text-white shrink-0">
+        <div className="flex items-center justify-between bg-linear-to-r from-[#2962A5] to-[#3776C4] px-3 py-1.5 text-white shrink-0">
           <div className="flex items-center gap-2">
             <img
               src="/img/icons/interactivites.svg"

@@ -94,13 +94,13 @@ export default function NotesModal() {
   return (
     /* Backdrop */
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center"
-      style={{ paddingTop: "10vh", background: "rgba(0,0,0,0.45)" }}
+      className="fixed inset-0 z-50 flex items-start sm:items-start justify-center"
+      style={{ paddingTop: "5vh", background: "rgba(0,0,0,0.45)" }}
       onClick={handleClose}
     >
       {/* Dialog */}
       <div
-        className="w-full flex flex-col overflow-hidden rounded-md shadow-2xl"
+        className="w-[95vw] sm:w-full flex flex-col overflow-hidden rounded-md shadow-2xl"
         style={{ maxWidth: 400, background: "#fff" }}
         onClick={(e) => e.stopPropagation()}
       >
