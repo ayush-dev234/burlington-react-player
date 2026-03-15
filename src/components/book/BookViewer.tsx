@@ -151,20 +151,27 @@ export default function BookViewer() {
     if (w === 0 || h === 0) return { pageWidth: 0, pageHeight: 0 };
 
     const isDouble = viewMode === "double";
-    // Smaller nav button space on mobile
-    const navButtonSpace = isMobile ? 24 : 48;
+    // Space reserved for nav buttons + gap between buttons and pages
+    // Also account for the px-8/px-14 padding on the viewport container
+    const navButtonSpace = isMobile ? 100 : 200;
     const availableWidth = w - navButtonSpace;
     const availableHeight = h;
 
     const pageAspect = PAGE_ASPECT_RATIO;
     const numPages = isDouble ? 2 : 1;
 
-    let pageWidth = availableWidth / numPages;
+    // Max width per page based on available width
+    const maxPageWidth = availableWidth / numPages;
+
+    let pageWidth = maxPageWidth;
     let pageHeight = pageWidth / pageAspect;
 
     if (pageHeight > availableHeight) {
       pageHeight = availableHeight;
       pageWidth = pageHeight * pageAspect;
+      // IMPORTANT: clamp width so pages don't overflow into nav button space
+      pageWidth = Math.min(pageWidth, maxPageWidth);
+      pageHeight = pageWidth / pageAspect;
     }
 
     return {
@@ -291,7 +298,7 @@ export default function BookViewer() {
     <div
       ref={containerRef}
       id="book-viewport"
-      className="relative flex flex-1 items-center justify-center overflow-hidden select-none"
+      className="relative flex flex-1 items-center justify-center overflow-hidden select-none px-8 sm:px-14"
     >
       {/* Previous Button */}
       <NavButton
@@ -528,8 +535,8 @@ function NavButton({
       disabled={disabled}
       className={`group z-50 flex shrink-0 items-center justify-center rounded-full bg-white/80 text-gray-600 shadow-md backdrop-blur-md transition-all duration-200 hover:bg-white hover:text-brand-600 hover:shadow-lg active:scale-90 disabled:opacity-30 disabled:pointer-events-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
         isMobile
-          ? `h-8 w-8 ${direction === "prev" ? "ml-1 mr-1" : "ml-1 mr-1"}`
-          : `h-12 w-12 ${direction === "prev" ? "ml-2 mr-3" : "ml-3 mr-2"}`
+          ? `h-8 w-8 ${direction === "prev" ? "ml-2 mr-3" : "ml-3 mr-2"}`
+          : `h-12 w-12 ${direction === "prev" ? "ml-4 mr-6" : "ml-6 mr-4"}`
       }`}
       title={direction === "prev" ? "Previous" : "Next"}
     >

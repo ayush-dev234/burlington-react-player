@@ -25,6 +25,7 @@ import {
   VolumeX,
   MoreHorizontal,
   X,
+  BarChart3,
 } from "lucide-react";
 import { useBookStore } from "@/store/useBookStore";
 import { useUIStore } from "@/store/useUIStore";
@@ -35,7 +36,7 @@ import { useResponsive } from "@/hooks/useResponsive";
 import { useClickOutside } from "@/hooks/useClickOutside";
 
 export default function Toolbar() {
-  const { isSidebarOpen, setSidebarOpen, setActiveModal } = useUIStore();
+  const { isSidebarOpen, setSidebarOpen, setActiveModal, isTrackerVisible, toggleTracker } = useUIStore();
   const {
     currentPage,
     totalPages,
@@ -74,7 +75,13 @@ export default function Toolbar() {
       {/* View Mode Toggle */}
       <OverflowItem
         label={viewMode === "double" ? "Single Page" : "Double Page"}
-        icon={viewMode === "double" ? <FileText size={18} /> : <BookOpen size={18} />}
+        icon={
+          viewMode === "double" ? (
+            <FileText size={18} />
+          ) : (
+            <BookOpen size={18} />
+          )
+        }
         onClick={() => {
           setViewMode(viewMode === "double" ? "single" : "double");
           setShowOverflow(false);
@@ -132,6 +139,16 @@ export default function Toolbar() {
         icon={<Image size={18} />}
         onClick={() => {
           useUIStore.getState().toggleThumbnailStrip();
+          setShowOverflow(false);
+        }}
+      />
+
+      {/* Tracker Toggle */}
+      <OverflowItem
+        label="Progress Tracker"
+        icon={<BarChart3 size={18} />}
+        onClick={() => {
+          useUIStore.getState().toggleTracker();
           setShowOverflow(false);
         }}
       />
@@ -256,7 +273,9 @@ export default function Toolbar() {
           <ToolButton
             id="tool-bookmode-toggle"
             title={viewMode === "double" ? "Single Page" : "Double Page"}
-            onClick={() => setViewMode(viewMode === "double" ? "single" : "double")}
+            onClick={() =>
+              setViewMode(viewMode === "double" ? "single" : "double")
+            }
           >
             {viewMode === "double" ? (
               <FileText size={20} />
@@ -315,6 +334,16 @@ export default function Toolbar() {
             onClick={() => useUIStore.getState().toggleThumbnailStrip()}
           >
             <Image size={20} />
+          </ToolButton>
+
+          {/* Tracker Toggle */}
+          <ToolButton
+            id="app-tool-tracker"
+            title="Progress Tracker"
+            active={isTrackerVisible}
+            onClick={toggleTracker}
+          >
+            <BarChart3 size={20} />
           </ToolButton>
         </>
       )}

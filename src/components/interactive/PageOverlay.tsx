@@ -33,7 +33,7 @@ export default function PageOverlay({
     }
   }, [pageNum]);
 
-  if (items.length === 0 && notes.length === 0) return null;
+  if (items.length === 0 && pageNotes.length === 0) return null;
 
   return (
     <div className="absolute inset-0 z-20 pointer-events-none">

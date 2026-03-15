@@ -33,7 +33,7 @@ export default function DrawingToolbar() {
     canvasData,
   } = useDrawingStore();
 
-  const { currentPage, setPage } = useBookStore();
+  const { currentPage, setPage, viewMode, totalPages } = useBookStore();
   const { isMobile } = useResponsive();
   const [showConfirm, setShowConfirm] = useState(false);
   const [showColorPicker, setShowColorPicker] = useState(false);
@@ -66,10 +66,49 @@ export default function DrawingToolbar() {
       .sort((a, b) => a - b);
   }, [canvasData]);
 
+  // In double mode, the right page is currentPage + 1
+  const rightPage =
+    viewMode === "double" && currentPage + 1 <= totalPages
+      ? currentPage + 1
+      : null;
+
   // ── Get the Fabric canvas instance ────────────────────────────────
   const getFabricCanvas = useCallback((): FabricCanvas | null => {
     return (window as any).__fabricCanvas ?? null;
   }, []);
+
+  // ── Split & save helper (mirrors DrawingCanvas logic) ─────────────
+  const splitAndSave = useCallback(
+    (fc: FabricCanvas) => {
+      if (viewMode !== "double" || !rightPage) {
+        const json = JSON.stringify(fc.toJSON());
+        saveCanvas(currentPage, json);
+        return;
+      }
+
+      const halfW = fc.getWidth() / 2;
+      const allObjects = fc.getObjects();
+      const leftObjs: any[] = [];
+      const rightObjs: any[] = [];
+
+      allObjects.forEach((obj: any) => {
+        const raw = obj.toJSON();
+        const bound = obj.getBoundingRect();
+        const centreX = bound.left + bound.width / 2;
+
+        if (centreX < halfW) {
+          leftObjs.push(raw);
+        } else {
+          rightObjs.push({ ...raw, left: (raw.left ?? 0) - halfW });
+        }
+      });
+
+      const baseJson = fc.toJSON();
+      saveCanvas(currentPage, JSON.stringify({ ...baseJson, objects: leftObjs }));
+      saveCanvas(rightPage, JSON.stringify({ ...baseJson, objects: rightObjs }));
+    },
+    [viewMode, rightPage, currentPage, saveCanvas],
+  );
 
   // ── Undo handler ──────────────────────────────────────────────────
   const handleUndo = useCallback(() => {
@@ -84,10 +123,9 @@ export default function DrawingToolbar() {
     fc.remove(lastObj);
     fc.renderAll();
 
-    // Save updated state
-    const json = JSON.stringify(fc.toJSON());
-    saveCanvas(currentPage, json);
-  }, [getFabricCanvas, currentPage, saveCanvas]);
+    // Save updated state (split in double mode)
+    splitAndSave(fc);
+  }, [getFabricCanvas, splitAndSave]);
 
   // ── Clear handler ─────────────────────────────────────────────────
   const handleClear = useCallback(() => {
@@ -98,8 +136,9 @@ export default function DrawingToolbar() {
     fc.backgroundColor = "transparent";
     fc.renderAll();
     clearCanvas(currentPage);
+    if (rightPage) clearCanvas(rightPage);
     setShowConfirm(false);
-  }, [getFabricCanvas, currentPage, clearCanvas]);
+  }, [getFabricCanvas, currentPage, rightPage, clearCanvas]);
 
   // ── Page selection handler ────────────────────────────────────────
   const handlePageChange = useCallback(

@@ -20,6 +20,7 @@ interface UIState {
   isBookOnlyMode: boolean;
   isPreloaderVisible: boolean;
   isThumbnailStripVisible: boolean;
+  isTrackerVisible: boolean;
   activeModal: ModalType;
 
   // Actions
@@ -30,6 +31,7 @@ interface UIState {
   setPreloaderVisible: (visible: boolean) => void;
   setActiveModal: (modal: ModalType) => void;
   toggleThumbnailStrip: () => void;
+  toggleTracker: () => void;
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -38,6 +40,7 @@ export const useUIStore = create<UIState>((set) => ({
   isBookOnlyMode: false,
   isPreloaderVisible: true,
   isThumbnailStripVisible: false,
+  isTrackerVisible: false,
   activeModal: null,
 
   toggleSidebar: () => set((s) => ({ isSidebarOpen: !s.isSidebarOpen })),
@@ -62,4 +65,7 @@ export const useUIStore = create<UIState>((set) => ({
 
   toggleThumbnailStrip: () =>
     set((s) => ({ isThumbnailStripVisible: !s.isThumbnailStripVisible })),
+
+  toggleTracker: () =>
+    set((s) => ({ isTrackerVisible: !s.isTrackerVisible })),
 }));

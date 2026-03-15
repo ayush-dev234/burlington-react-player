@@ -12,6 +12,8 @@ interface BookmarkState {
   toggleBookmark: (page: number) => void;
   isBookmarked: (page: number) => boolean;
   totalCount: () => number;
+  /** Re-read bookmarks from localStorage (call after STORAGE_PREFIX is set) */
+  rehydrate: () => void;
 }
 
 function persistBookmarks(bookmarks: number[]): void {
@@ -35,4 +37,9 @@ export const useBookmarkStore = create<BookmarkState>((set, get) => ({
   isBookmarked: (page) => get().bookmarks.includes(page),
 
   totalCount: () => get().bookmarks.length,
+
+  rehydrate: () => {
+    const fresh = getStorageItem<number[]>("bookmarks", []);
+    set({ bookmarks: fresh });
+  },
 }));
