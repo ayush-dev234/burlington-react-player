@@ -4,6 +4,9 @@ import { loadBookConfig } from "@/config/book.config";
 import { loadTocData } from "@/config/toc.config";
 import { loadPageLinks } from "@/config/pages.config";
 import { useBookStore } from "@/store/useBookStore";
+import { useBookmarkStore } from "@/store/useBookmarkStore";
+import { useNotesStore } from "@/store/useNotesStore";
+import { useDrawingStore } from "@/store/useDrawingStore";
 import { useUIStore } from "@/store/useUIStore";
 import { initStoragePrefix, initPageAspectRatio } from "@/utils/constants";
 // import AccessibilityPanel from "./accessibility/AccessibilityPanel";
@@ -60,6 +63,11 @@ function App() {
 
         // Initialize storage prefix with the book ID
         initStoragePrefix(bookConfig.id);
+
+        // Re-hydrate stores now that STORAGE_PREFIX points to the correct book
+        useNotesStore.getState().rehydrate();
+        useDrawingStore.getState().rehydrate();
+        useBookmarkStore.getState().rehydrate();
 
         // Initialize aspect ratio from book dimensions
         initPageAspectRatio(bookConfig.bookWidth, bookConfig.bookHeight);

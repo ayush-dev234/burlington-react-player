@@ -42,7 +42,8 @@ export default function NotesModal() {
   const page = currentPage;
   setSelectedPage(page);
 
-  const existing =notes.find((n) => n.pageNum === selectedPage);// pick first note for simplicity
+  // Use `page` (the value we just set), not `selectedPage` (stale state)
+  const existing = notes.find((n) => n.pageNum === page);
   if (existing) {
     setText(existing.text);
     setEditingId(existing.id);
@@ -52,7 +53,8 @@ export default function NotesModal() {
   }
 
   setTimeout(() => textareaRef.current?.focus(), 50);
-},  [isOpen, currentPage, selectedPage]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+},  [isOpen, currentPage]);
 
   // When user switches the page dropdown, load note for that page
   const handlePageChange = (page: number) => {

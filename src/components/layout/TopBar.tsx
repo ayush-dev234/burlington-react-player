@@ -15,6 +15,7 @@ import { useBookmarkStore } from "@/store/useBookmarkStore";
 import { useNotesStore } from "@/store/useNotesStore";
 import { useDrawingStore } from "@/store/useDrawingStore";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useUIStore } from "@/store/useUIStore";
 
 export default function TopBar() {
   const config = getBookConfig();
@@ -26,10 +27,12 @@ export default function TopBar() {
   const progress =
     totalPages > 1 ? ((currentPage - 1) / (totalPages - 1)) * 100 : 0;
 
+  const isTrackerVisible = useUIStore((s) => s.isTrackerVisible);
+
   return (
     <header id="topbar" className="fixed top-0 left-0 right-0 z-50 no-print">
       {/* Main Bar */}
-      <div className="flex h-11 items-center justify-between bg-[#42a5e8] relative shadow-sm">
+      <div className="flex h-11 items-center justify-between bg-[#42a5e8] relative shadow-sm" style={{ paddingRight: '5%' }}>
         {/* Slanted White Background */}
         <div
           className="absolute left-0 top-0 h-full w-[80px] sm:w-[350px] bg-white z-0 transition-all duration-300"
@@ -72,15 +75,18 @@ export default function TopBar() {
         </h1>
 
         {/* Right: Counters */}
-        <div className="relative z-30 flex items-center gap-2 sm:gap-3 md:gap-5 pr-4 sm:pr-6 md:pr-20">
+        <div className="relative z-30 flex items-center gap-3 sm:gap-4 md:gap-5 mr-1">
           <BookmarkDropdown currentPage={currentPage} setPage={setPage} />
           <HighlightsDropdown setPage={setPage} />
           <NotesDropdown currentPage={currentPage} setPage={setPage} />
         </div>
       </div>
 
-      {/* Progress Bar */}
-      <div className="h-[4px] w-full bg-[#1a6da0] relative z-20">
+      {/* Progress Bar — conditionally visible */}
+      <div
+        className="w-full bg-[#1a6da0] relative z-20 overflow-hidden transition-all duration-300"
+        style={{ height: isTrackerVisible ? '4px' : '0px' }}
+      >
         <div
           className="h-full transition-all duration-500 ease-out"
           style={{

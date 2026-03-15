@@ -23,6 +23,8 @@ interface DrawingState {
   clearCanvas: (pageNum: number) => void;
   toggleToolbar: () => void;
   getHighlightedPageCount: () => number;
+  /** Re-read canvas data from localStorage (call after STORAGE_PREFIX is set) */
+  rehydrate: () => void;
 }
 
 export const useDrawingStore = create<DrawingState>((set, get) => ({
@@ -61,4 +63,9 @@ export const useDrawingStore = create<DrawingState>((set, get) => ({
   toggleToolbar: () => set((s) => ({ isToolbarOpen: !s.isToolbarOpen })),
 
   getHighlightedPageCount: () => Object.keys(get().canvasData).length,
+
+  rehydrate: () => {
+    const fresh = getStorageItem<Record<number, string>>("canvas_data", {});
+    set({ canvasData: fresh });
+  },
 }));
