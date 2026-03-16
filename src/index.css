@@ -1,0 +1,303 @@
+@import "tailwindcss";
+
+/* ============================================
+   E-Book Reader — Design System
+   ============================================ */
+
+/* --- CSS Custom Properties (Theme Tokens) --- */
+@theme {
+  --color-brand-50: #eef6ff;
+  --color-brand-100: #d9eaff;
+  --color-brand-200: #b3d4ff;
+  --color-brand-300: #80b8ff;
+  --color-brand-400: #4d9cff;
+  --color-brand-500: #3369a9;
+  --color-brand-600: #2a5a96;
+  --color-brand-700: #1e4a7d;
+  --color-brand-800: #153a64;
+  --color-brand-900: #0d2a4b;
+  --color-brand-950: #071a33;
+
+  --color-surface: #ffffff;
+  --color-surface-dim: #f8fafc;
+  --color-surface-bright: #f1f5f9;
+  --color-surface-overlay: rgba(255, 255, 255, 0.85);
+
+  --color-on-surface: #0f172a;
+  --color-on-surface-muted: #64748b;
+  --color-on-surface-subtle: #94a3b8;
+
+  --color-border: #e2e8f0;
+  --color-border-focus: #3369a9;
+
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  /* Dark mode overrides are handled via Tailwind dark: variant */
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Animations */
+  --animate-slide-in-left: slideInLeft 0.3s ease-out;
+  --animate-slide-in-right: slideInRight 0.3s ease-out;
+  --animate-fade-in: fadeIn 0.2s ease-out;
+  --animate-bounce-in: bounceIn 0.4s ease-out;
+  --animate-pulse-glow: pulseGlow 2s ease-in-out infinite;
+}
+
+/* --- Keyframes --- */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(51, 105, 169, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(51, 105, 169, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* --- Base Styles --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-surface-dim);
+  color: var(--color-on-surface);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Scrollbar Styling --- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-on-surface-subtle);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-on-surface-muted);
+}
+
+/* --- Focus Visible Styles --- */
+:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* --- Utility Classes --- */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-bright) 25%,
+    var(--color-surface-dim) 50%,
+    var(--color-surface-bright) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* --- Dark Mode Styles --- */
+.dark body {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Print Styles --- */
+@media print {
+  body {
+    overflow: visible;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+.high-contrast {
+  filter: contrast(140%) brightness(110%);
+}
+
+.large-text {
+  font-size: 1.25rem;
+}
+
+.text-spacing {
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+}
+
+.reduce-motion * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* --- Responsive Utilities --- */
+
+/* Touch optimization for mobile */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Overscroll containment */
+#root {
+  overscroll-behavior: contain;
+}
+
+/* Safe area insets for notched devices */
+.fixed.bottom-3 {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+header.fixed {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* Improved skeleton shimmer */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e8e8e8 37%,
+    #f0f0f0 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+/* Smooth scrolling for all scroll containers */
+.overflow-y-auto,
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Responsive text selection */
+.select-none img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Small screen toolbar adjustments */
+@media (max-width: 640px) {
+  #toolBox {
+    bottom: 8px !important;
+  }
+}

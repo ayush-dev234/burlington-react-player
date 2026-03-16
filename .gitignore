@@ -1,0 +1,6 @@
+node_modules
+public/resources
+dist
+
+project_architecture.md
+react_migration_plan.md
