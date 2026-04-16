@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Toaster } from "sonner";
-import { loadBookConfig } from "@/config/book.config";
+import { getBookConfig } from "@/config/book.config";
 import { loadTocData } from "@/config/toc.config";
 import { loadPageLinks } from "@/config/pages.config";
 import { useBookStore } from "@/store/useBookStore";
@@ -56,7 +56,7 @@ function App() {
       try {
         // Load all config data in parallel
         const [bookConfig] = await Promise.all([
-          loadBookConfig(),
+          getBookConfig(),
           loadTocData(),
           loadPageLinks(),
         ]);
