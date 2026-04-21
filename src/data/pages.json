@@ -4,10 +4,18 @@
       "x": "54.1",
       "y": "15",
       "title": "Animation",
-      "icon": "video",
+      "icon": "./img/icons/video.svg",
       "link": "resources/Animations/Page_7.mp4",
       "type": "video",
       "size": "1024x720"
+    },
+    {
+      "x": "0",
+      "y": "42",
+      "title": "Audio",
+      "icon": "./img/icons/audio.svg",
+      "link": "audio/logo-audio.mp3",
+      "type": "audio"
     }
   ],
   "8": [
@@ -15,7 +23,7 @@
       "x": "0",
       "y": "10",
       "title": "Act 1",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_8/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -24,7 +32,7 @@
       "x": "0",
       "y": "54",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_8_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -35,7 +43,7 @@
       "x": "0",
       "y": "10",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_9/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -44,7 +52,7 @@
       "x": "0",
       "y": "54",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_9_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -55,7 +63,7 @@
       "x": "0",
       "y": "35",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_10/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -68,7 +76,7 @@
       "width": "400px",
       "height": "200px",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_11/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -79,7 +87,7 @@
       "x": "0",
       "y": "10",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_12/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -88,7 +96,7 @@
       "x": "0",
       "y": "54",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_12_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -99,7 +107,7 @@
       "x": "72.1",
       "y": "7",
       "title": "Animation",
-      "icon": "video",
+      "icon": "./img/icons/video.svg",
       "link": "resources/Animations/Page_13.mp4",
       "type": "video",
       "size": "1024x720"
@@ -110,7 +118,7 @@
       "x": "0",
       "y": "35",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_14/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -119,7 +127,7 @@
       "x": "0",
       "y": "70",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_14_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -130,7 +138,7 @@
       "x": "0",
       "y": "5",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_15/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -139,7 +147,7 @@
       "x": "0",
       "y": "28",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_15_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -150,7 +158,7 @@
       "x": "0",
       "y": "54",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_17/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -161,7 +169,7 @@
       "x": "0",
       "y": "5",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_18/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -170,7 +178,7 @@
       "x": "0",
       "y": "28",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_18_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -181,7 +189,7 @@
       "x": "0",
       "y": "15",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_21/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -190,7 +198,7 @@
       "x": "0",
       "y": "48",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_21_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -201,7 +209,7 @@
       "x": "0",
       "y": "15",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_23/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -210,7 +218,7 @@
       "x": "0",
       "y": "75",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_23_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -221,7 +229,7 @@
       "x": "0",
       "y": "15",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_24/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -230,7 +238,7 @@
       "x": "0",
       "y": "57",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_24_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -241,7 +249,7 @@
       "x": "0",
       "y": "15",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_29/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -250,7 +258,7 @@
       "x": "0",
       "y": "57",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_29_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -261,7 +269,7 @@
       "x": "0",
       "y": "15",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_30/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -270,7 +278,7 @@
       "x": "0",
       "y": "57",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_30_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -281,7 +289,7 @@
       "x": "0",
       "y": "15",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_32/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -290,7 +298,7 @@
       "x": "0",
       "y": "57",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_32_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -301,7 +309,7 @@
       "x": "0",
       "y": "15",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_37/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -310,7 +318,7 @@
       "x": "0",
       "y": "40",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_37_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -321,7 +329,7 @@
       "x": "0",
       "y": "15",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_38/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -330,7 +338,7 @@
       "x": "0",
       "y": "45",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_38_1/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -341,7 +349,7 @@
       "x": "0",
       "y": "65",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_95/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -352,7 +360,7 @@
       "x": "0",
       "y": "30",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_96/index.html",
       "type": "iframe",
       "size": "1024x720"
@@ -363,7 +371,7 @@
       "x": "0",
       "y": "10",
       "title": "Interactivity",
-      "icon": "puzzle",
+      "icon": "./img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page_98/index.html",
       "type": "iframe",
       "size": "1024x720"

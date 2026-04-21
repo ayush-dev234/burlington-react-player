@@ -44,7 +44,7 @@ export default function TopBar() {
         {/* Left: Logo + Branding */}
         <div className="relative z-10 flex items-center gap-2 sm:gap-2.5 pl-3 sm:pl-4 min-w-0 h-full">
           <img
-            src="/img/logo-icon.png"
+            src="./img/logo-icon.png"
             alt="Logo"
             className="h-7 sm:h-8 w-auto shrink-0 drop-shadow-sm transition-all duration-200"
             onError={(e) => {

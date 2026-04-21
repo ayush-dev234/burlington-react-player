@@ -108,7 +108,7 @@ export default function VideoModal({
         >
           <div className="flex items-center gap-2 min-w-0">
             <img
-              src="/img/icons/video.svg"
+              src="./img/icons/video.svg"
               alt=""
               className="w-5 h-5 shrink-0 brightness-0 invert"
               draggable={false}
@@ -166,12 +166,15 @@ export default function VideoModal({
           ) : (
             <video
               ref={videoRef}
-              src={`/${link}`}
+              src={`./${link}`}
               controls
+              controlsList="nodownload"
+              onContextMenu={(e) => e.preventDefault()}
               autoPlay
               className="w-full max-h-full object-contain"
               style={isFullscreen ? {} : { aspectRatio: `${width}/${height}` }}
               onError={() => setVideoError(true)}
+              
             >
               Your browser does not support the video tag.
             </video>

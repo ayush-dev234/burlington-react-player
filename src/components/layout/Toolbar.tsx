@@ -158,7 +158,7 @@ export default function Toolbar() {
   return (
     <footer
       id="toolBox"
-      className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 flex h-11 items-center justify-center gap-0.5 sm:gap-1 rounded-full bg-white/85 backdrop-blur-xl px-2 sm:px-3 shadow-[0_4px_30px_rgba(0,0,0,0.12)] border border-gray-200/60 no-print transition-all duration-300 max-w-[96vw]"
+      className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 flex h-11 items-center justify-center gap-0.5 sm:gap-1 rounded-full bg-white/85 backdrop-blur-xl px-2 sm:px-3 shadow-[0_4px_30px_rgba(0,0,0,0.12)] border border-gray-200/60 no-print transition-all duration-300 max-w-[96vw]"
     >
       {/* Table of Contents */}
       <ToolButton

@@ -14,6 +14,7 @@ interface AudioPlayerProps {
   onClose: () => void;
   link: string;
   title: string;
+  rect?: DOMRect;
 }
 
 export default function AudioPlayer({
@@ -21,6 +22,7 @@ export default function AudioPlayer({
   onClose,
   link,
   title,
+  rect,
 }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -108,10 +110,22 @@ export default function AudioPlayer({
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   if (!isOpen) return null;
+    // Default to standard bottom-center
+  let placementClass = "fixed bottom-20 left-1/2 -translate-x-1/2";
+  let popupStyle: React.CSSProperties = {};
+
+  if (rect) {
+    placementClass = "fixed";
+    // Sit 10px below the icon
+    popupStyle.top = rect.bottom + 10;
+    // Align with the left of the icon, but don't let it overflow off the right side of the screen!
+    popupStyle.left = Math.min(rect.left, window.innerWidth - 350); 
+  }
 
   return (
     <div
-      className="fixed bottom-24 left-1/2 -translate-x-1/2 z-9998 animate-fade-in"
+      className= {`${placementClass} z-9998 animate-fade-in`}
+      style={popupStyle}
       onClick={(e) => e.stopPropagation()}
     >
       <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-2xl border border-gray-200/60 backdrop-blur-md min-w-[320px] max-w-[420px]">

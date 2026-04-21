@@ -39,7 +39,7 @@ export function getSpreadPages(
  */
 export function getPageImagePath(pageNum: number, ext?: string): string {
   const pageExt = ext ?? getBookConfig().pageExt;
-  return `/resources/book/page_${pageNum}.${pageExt}`;
+  return `./resources/book/page_${pageNum}.${pageExt}`;
 }
 
 /**

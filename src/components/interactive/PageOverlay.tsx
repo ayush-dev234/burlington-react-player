@@ -12,7 +12,7 @@ import { useUIStore } from "@/store/useUIStore";
 
 interface PageOverlayProps {
   pageNum: number;
-  onItemClick: (item: InteractiveItem) => void;
+  onItemClick: (item: InteractiveItem, rect?: DOMRect) => void;
 }
 
 export default function PageOverlay({

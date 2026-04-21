@@ -93,7 +93,7 @@ export default function ActivityModal({
         <div className="flex items-center justify-between bg-linear-to-r from-[#2962A5] to-[#3776C4] px-3 py-1.5 text-white shrink-0">
           <div className="flex items-center gap-2">
             <img
-              src="/img/icons/interactivites.svg"
+              src="./img/icons/interactivities.svg"
               alt=""
               className="w-5 h-5 brightness-0 invert"
               draggable={false}
@@ -125,7 +125,7 @@ export default function ActivityModal({
         {/* Iframe content */}
         <div className="flex-1 bg-white overflow-hidden">
           <iframe
-            src={`/${link}`}
+            src={`./${link}`}
             title={title}
             className="h-full w-full border-0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"

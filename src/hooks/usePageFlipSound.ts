@@ -13,7 +13,7 @@ export function usePageFlipSound() {
     if (!soundEnabled) return;
 
     if (!audioRef.current) {
-      audioRef.current = new Audio("/audio/pageflip.mp3");
+      audioRef.current = new Audio("./audio/pageflip.mp3");
     }
     audioRef.current.currentTime = 0;
     audioRef.current.play().catch(() => {

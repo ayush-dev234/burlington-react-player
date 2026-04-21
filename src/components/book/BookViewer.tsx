@@ -48,6 +48,7 @@ function isCoverOrBack(
 interface ModalState {
   type: "activity" | "video" | "audio" | null;
   item: InteractiveItem | null;
+  rect?: DOMRect;
 }
 
 export default function BookViewer() {
@@ -91,14 +92,14 @@ export default function BookViewer() {
   // ── Page preview modal state ──────────────────────────────────────
   const [previewPage, setPreviewPage] = useState<number | null>(null);
 
-  const handleItemClick = useCallback((item: InteractiveItem) => {
+  const handleItemClick = useCallback((item: InteractiveItem, rect?: DOMRect) => {
     if (item.type === "video") {
-      setModal({ type: "video", item });
+      setModal({ type: "video", item, rect });
     } else if (item.type === "audio") {
-      setModal({ type: "audio", item });
+      setModal({ type: "audio", item, rect });
     } else {
       // iframe activities
-      setModal({ type: "activity", item });
+      setModal({ type: "activity", item, rect });
     }
   }, []);
 
@@ -432,7 +433,8 @@ export default function BookViewer() {
         onClose={closeModal}
         link={modal.item?.link ?? ""}
         title={modal.item?.title ?? "Audio"}
-      />
+        rect={modal.rect}
+      />  
 
       {/* ── Page Preview Modal ─────────────────────────────────────── */}
       <PagePreviewModal

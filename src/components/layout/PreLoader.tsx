@@ -34,7 +34,7 @@ export default function PreLoader({ onComplete }: PreLoaderProps) {
           {/* Book animation */}
           <div className="mb-8">
             <img
-              src="/img/preloader-books.gif"
+              src="./img/preloader-books.gif"
               alt="Loading..."
               className="h-32 w-auto object-contain"
               onError={(e) => {
@@ -52,7 +52,7 @@ export default function PreLoader({ onComplete }: PreLoaderProps) {
             className="text-center"
           >
             <img
-              src="/img/main-logo.png"
+              src="./img/main-logo.png"
               alt="Logo"
               className="mx-auto mb-4 h-12 w-auto object-contain"
               onError={(e) => {

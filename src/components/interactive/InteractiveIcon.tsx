@@ -11,13 +11,14 @@ import type { InteractiveItem } from "@/types/book.types";
 
 // Map icon types to SVG paths in public/img/icons/
 const ICON_SRC_MAP: Record<string, string> = {
-  puzzle: "/img/icons/interactivites.svg",
-  video: "/img/icons/video.svg",
+  interactivity: "./img/icons/interactivities.svg",
+  video: "./img/icons/video.svg",
+  audio: "./img/icons/audio.svg",
 };
 
 interface InteractiveIconProps {
   item: InteractiveItem;
-  onClick: (item: InteractiveItem) => void;
+  onClick: (item: InteractiveItem, rect: DOMRect) => void;
 }
 
 export default function InteractiveIcon({
@@ -25,7 +26,9 @@ export default function InteractiveIcon({
   onClick,
 }: InteractiveIconProps) {
   const [hovered, setHovered] = useState(false);
-  const iconSrc = ICON_SRC_MAP[item.icon] || ICON_SRC_MAP.puzzle;
+  
+  // Try to find it in the map, OR if it's already a path (contains '/'), use it directly. Otherwise falback to interactivity.
+  const iconSrc = ICON_SRC_MAP[item.icon] || (item.icon.includes('/') ? item.icon : ICON_SRC_MAP.interactivity);
 
   return (
     <button
@@ -35,8 +38,8 @@ export default function InteractiveIcon({
         left: `${item.x}%`,
         top: `${item.y}%`,
         // Larger effective tap area — min 40px for mobile accessibility
-        width: 40,
-        height: 40,
+        width: 32,
+        height: 32,
         // The icon itself stays 32×32 visually
         padding: 4,
         filter: hovered
@@ -45,7 +48,7 @@ export default function InteractiveIcon({
       }}
       onClick={(e) => {
         e.stopPropagation();
-        onClick(item);
+        onClick(item, e.currentTarget.getBoundingClientRect());
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

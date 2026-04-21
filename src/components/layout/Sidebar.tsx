@@ -82,7 +82,7 @@ export default function Sidebar() {
                 className="flex w-full items-center justify-between rounded-md bg-surface-bright px-3 py-2 text-sm font-medium hover:bg-surface"
               >
                 <span className="p-5"> Table of Contents</span>
-                <span>{showToc ? "▼" : "▶"}</span>
+                <span className="text-gray-300">{showToc ? "▼" : "▶"}</span>
               </button>
             </div>
             {/* TOC List */}
@@ -95,7 +95,7 @@ export default function Sidebar() {
                   className="overflow-auto"
                 >
                   <ul className="space-y-1 px-1">
-                    {(tocEntries as any)?.toc?.map((entry:any, index:number) => {
+                    {tocEntries.map((entry:any, index:number) => {
                       const isActive = currentPage === entry.page;
                       const isUnit = entry.isUnitHeader;
 
@@ -133,7 +133,7 @@ export default function Sidebar() {
                 className="flex w-full items-center justify-between rounded-md bg-surface-bright px-3 py-2 text-sm font-medium hover:bg-surface"
               >
                 <span className="p-5">Animations</span>
-                <span>{showVideoToc ? "▼" : "▶"}</span>
+                <span className="text-gray-300">{showVideoToc ? "▼" : "▶"}</span>
             </button>
             <AnimatePresence>
               {showVideoToc && (
@@ -144,7 +144,7 @@ export default function Sidebar() {
                   className="overflow-auto"
                 >
                   <ul className="space-y-1 px-1">
-                    {(tocEntries as any)?.mediaToc?.map((entry:any, index:number) => {
+                    {tocEntries?.map((entry:any, index:number) => {
                       const isActive = currentPage === entry.page;
                       const isUnit = entry.isUnitHeader;
 
@@ -182,7 +182,7 @@ export default function Sidebar() {
                 className="flex w-full items-center justify-between rounded-md bg-surface-bright px-3 py-2 text-sm font-medium hover:bg-surface"
               >
                 <span className="p-5">Interactivities</span>
-                <span>{showInteractivesToc ? "▼" : "▶"}</span>
+                <span className="text-gray-300">{showInteractivesToc ? "▼" : "▶"}</span>
             </button>
             <AnimatePresence>
               {showInteractivesToc && (
