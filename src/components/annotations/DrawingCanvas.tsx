@@ -28,6 +28,7 @@ export default function DrawingCanvas() {
     penWidth,
     canvasData,
     saveCanvas,
+    clearCanvas,
   } = useDrawingStore();
 
   const currentPage = useBookStore((s) => s.currentPage);
@@ -74,7 +75,12 @@ export default function DrawingCanvas() {
       if (viewMode !== "double" || !rightPage) {
         // Single mode — save everything under currentPage
         const json = JSON.stringify(fc.toJSON());
-        saveCanvas(currentPage, json);
+        const objects = fc.getObjects();
+        if (objects.length > 0) {
+          saveCanvas(currentPage, json);
+        } else {
+          clearCanvas(currentPage);
+        }
         return;
       }
 
@@ -100,13 +106,23 @@ export default function DrawingCanvas() {
       });
 
       const baseJson = fc.toJSON();
-      const leftJson = JSON.stringify({ ...baseJson, objects: leftObjs });
-      const rightJson = JSON.stringify({ ...baseJson, objects: rightObjs });
 
-      saveCanvas(leftPage, leftJson);
-      saveCanvas(rightPage, rightJson);
+      // Only save pages that actually have objects; clear empty ones
+      if (leftObjs.length > 0) {
+        const leftJson = JSON.stringify({ ...baseJson, objects: leftObjs });
+        saveCanvas(leftPage, leftJson);
+      } else {
+        clearCanvas(leftPage);
+      }
+
+      if (rightObjs.length > 0) {
+        const rightJson = JSON.stringify({ ...baseJson, objects: rightObjs });
+        saveCanvas(rightPage, rightJson);
+      } else {
+        clearCanvas(rightPage);
+      }
     },
-    [viewMode, rightPage, leftPage, currentPage, saveCanvas],
+    [viewMode, rightPage, leftPage, currentPage, saveCanvas, clearCanvas],
   );
 
   // ── Initialize / re-initialize Fabric canvas when page changes ─────
@@ -253,11 +269,17 @@ export default function DrawingCanvas() {
     if (!fc || !container) return;
 
     const observer = new ResizeObserver((entries) => {
+      const currentFc = fabricRef.current;
+      if (!currentFc) return;
       for (const entry of entries) {
         const w = entry.contentRect.width;
         const h = entry.contentRect.height;
-        fc.setDimensions({ width: w, height: h });
-        fc.renderAll();
+        try {
+          currentFc.setDimensions({ width: w, height: h });
+          currentFc.renderAll();
+        } catch {
+          // Canvas may have been disposed between observer fire and here
+        }
       }
     });
 

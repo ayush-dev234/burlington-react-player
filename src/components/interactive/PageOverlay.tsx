@@ -49,7 +49,10 @@ export default function PageOverlay({
         <StickyNote 
           key={`note-${note.id}`} 
           note={note} 
-          onOpenNote={() => setActiveModal("notes")} 
+          onOpenNote={(clickedNote) =>{
+            useNotesStore.getState().setActiveNoteId(clickedNote.id);
+            setActiveModal("notes");
+          }} 
         />
       ))}
     </div>

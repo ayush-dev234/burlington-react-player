@@ -52,8 +52,16 @@ interface ModalState {
 }
 
 export default function BookViewer() {
-  const { currentPage, totalPages, viewMode, zoomLevel, setPage, nextPage, prevPage, setViewMode } =
-    useBookStore();
+  const {
+    currentPage,
+    totalPages,
+    viewMode,
+    zoomLevel,
+    setPage,
+    nextPage,
+    prevPage,
+    setViewMode,
+  } = useBookStore();
 
   const { playFlip } = usePageFlipSound();
   const { isMobile } = useResponsive();
@@ -92,16 +100,19 @@ export default function BookViewer() {
   // ── Page preview modal state ──────────────────────────────────────
   const [previewPage, setPreviewPage] = useState<number | null>(null);
 
-  const handleItemClick = useCallback((item: InteractiveItem, rect?: DOMRect) => {
-    if (item.type === "video") {
-      setModal({ type: "video", item, rect });
-    } else if (item.type === "audio") {
-      setModal({ type: "audio", item, rect });
-    } else {
-      // iframe activities
-      setModal({ type: "activity", item, rect });
-    }
-  }, []);
+  const handleItemClick = useCallback(
+    (item: InteractiveItem, rect?: DOMRect) => {
+      if (item.type === "video") {
+        setModal({ type: "video", item, rect });
+      } else if (item.type === "audio") {
+        setModal({ type: "audio", item, rect });
+      } else {
+        // iframe activities
+        setModal({ type: "activity", item, rect });
+      }
+    },
+    [],
+  );
 
   const closeModal = useCallback(() => {
     setModal({ type: null, item: null });
@@ -109,11 +120,14 @@ export default function BookViewer() {
 
   const drawingTool = useDrawingStore((s) => s.activeTool);
 
-  const handlePageClick = useCallback((pageNum: number) => {
-    // Don't open preview modal when drawing tool is active
-    if (drawingTool !== "none") return;
-    setPreviewPage(pageNum);
-  }, [drawingTool]);
+  const handlePageClick = useCallback(
+    (pageNum: number) => {
+      // Don't open preview modal when drawing tool is active
+      if (drawingTool !== "none") return;
+      setPreviewPage(pageNum);
+    },
+    [drawingTool],
+  );
 
   // ── Force remount key ──────────────────────────────────────────────
   const [remountKey, setRemountKey] = useState(0);
@@ -196,7 +210,7 @@ export default function BookViewer() {
       suppressSyncRef.current = false;
       return;
     }
-    
+
     const timer = setTimeout(() => {
       const pf = bookRef.current?.pageFlip();
       if (!pf) return;
@@ -204,9 +218,9 @@ export default function BookViewer() {
       try {
         const targetIndex = currentPage - 1;
         const currentIndex = pf.getCurrentPageIndex();
-        
-        if (typeof currentIndex === 'number' && currentIndex !== targetIndex) {
-          if (typeof pf.flip === 'function') {
+
+        if (typeof currentIndex === "number" && currentIndex !== targetIndex) {
+          if (typeof pf.flip === "function") {
             pf.flip(targetIndex);
           } else {
             pf.turnToPage(targetIndex);
@@ -216,7 +230,7 @@ export default function BookViewer() {
         console.warn("Flipbook not ready", err);
       }
     }, 50);
-    
+
     return () => clearTimeout(timer);
   }, [currentPage, viewMode]);
 
@@ -324,8 +338,10 @@ export default function BookViewer() {
           height: pageDimensions.pageHeight,
         }}
       >
-          {/* Render Full Flipbook for Double Mode */}
-          {viewMode === "double" && pageDimensions.pageWidth > 0 && pageDimensions.pageHeight > 0 && (
+        {/* Render Full Flipbook for Double Mode */}
+        {viewMode === "double" &&
+          pageDimensions.pageWidth > 0 &&
+          pageDimensions.pageHeight > 0 && (
             <FlipBook
               key={`flipbook-double-${remountKey}`}
               width={pageDimensions.pageWidth}
@@ -360,19 +376,23 @@ export default function BookViewer() {
             </FlipBook>
           )}
 
-          {/* Render Smooth Framer Motion Slider for Single Mode */}
-          {viewMode === "single" && pageDimensions.pageWidth > 0 && pageDimensions.pageHeight > 0 && (
-            <div 
-              className="relative w-full h-full overflow-hidden bg-white/50 shadow-inner rounded-sm"
-            >
-              <AnimatePresence initial={false} custom={slideDirection} mode="wait">
+        {/* Render Smooth Framer Motion Slider for Single Mode */}
+        {viewMode === "single" &&
+          pageDimensions.pageWidth > 0 &&
+          pageDimensions.pageHeight > 0 && (
+            <div className="relative w-full h-full overflow-hidden bg-white/50 shadow-inner rounded-sm">
+              <AnimatePresence
+                initial={false}
+                custom={slideDirection}
+                mode="wait"
+              >
                 <motion.div
                   key={currentPage}
                   custom={slideDirection}
                   variants={{
                     enter: (dir) => ({ x: dir > 0 ? 50 : -50, opacity: 0 }),
                     center: { x: 0, opacity: 1 },
-                    exit: (dir) => ({ x: dir < 0 ? 50 : -50, opacity: 0 })
+                    exit: (dir) => ({ x: dir < 0 ? 50 : -50, opacity: 0 }),
                   }}
                   initial="enter"
                   animate="center"
@@ -434,7 +454,7 @@ export default function BookViewer() {
         link={modal.item?.link ?? ""}
         title={modal.item?.title ?? "Audio"}
         rect={modal.rect}
-      />  
+      />
 
       {/* ── Page Preview Modal ─────────────────────────────────────── */}
       <PagePreviewModal
@@ -467,9 +487,7 @@ const PageImage = React.forwardRef<HTMLDivElement, PageImageProps>(
         onClick={() => onPageClick?.(pageNum)}
       >
         {/* Loading skeleton with shimmer */}
-        {!loaded && !error && (
-          <div className="absolute inset-0 skeleton" />
-        )}
+        {!loaded && !error && <div className="absolute inset-0 skeleton" />}
 
         {/* Error state with retry */}
         {error && (
@@ -569,7 +587,13 @@ function BookmarkCorner({
       }`}
       title="Toggle bookmark"
     >
-      <svg width={20} height={28} viewBox="0 0 28 36" fill="currentColor" className="sm:w-6 sm:h-8">
+      <svg
+        width={20}
+        height={28}
+        viewBox="0 0 28 36"
+        fill="currentColor"
+        className="sm:w-6 sm:h-8"
+      >
         <path d="M0 0h28v36l-14-8-14 8V0z" />
       </svg>
     </button>
