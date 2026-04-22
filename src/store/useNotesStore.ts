@@ -12,12 +12,14 @@ import { getStorageItem, setStorageItem } from "@/utils/storage";
 
 interface NotesState {
   notes: Note[];
+  activeNoteId: string | null;
 
   addNote: (note: Omit<Note, "id" | "createdAt" | "updatedAt">) => void;
   updateNote: (id: string, updates: Partial<Omit<Note, "id">>) => void;
   deleteNote: (id: string) => void;
   getNotesForPage: (pageNum: number) => Note[];
   totalCount: () => number;
+  setActiveNoteId: (id: string | null) => void;
   /** Re-read notes from localStorage (call after STORAGE_PREFIX is set) */
   rehydrate: () => void;
 }
@@ -35,7 +37,8 @@ function persistNotes(notes: Note[]): void {
 export const useNotesStore = create<NotesState>((set, get) => ({
   // Load notes from localStorage
   notes: getStorageItem<Note[]>(STORAGE_KEY, []),
-
+  activeNoteId: null,
+  setActiveNoteId: (id) => set({ activeNoteId: id }),
   addNote: (noteData) => {
     const now = Date.now();
 

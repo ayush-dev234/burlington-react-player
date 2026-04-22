@@ -127,11 +127,12 @@ function BookmarkDropdown({
 
       <AnimatePresence>
         {open && (
-          <DropdownPanel title="Bookmarks" emptyText="No Bookmarks Yet.">
+          <DropdownPanel title="Bookmarks" emptyText="No Bookmarks Yet." isCompact={bookmarks.length > 4}>
             {bookmarks.map((page) => (
               <DropdownItem
                 key={page}
                 label={`Page ${page}`}
+                isCompact={bookmarks.length > 4}
                 onClick={() => {
                   setPage(page);
                   setOpen(false);
@@ -170,11 +171,12 @@ function HighlightsDropdown({ setPage }: { setPage: (p: number) => void }) {
 
       <AnimatePresence>
         {open && (
-          <DropdownPanel title="Highlights" emptyText="No Highlights Yet.">
+          <DropdownPanel title="Highlights" emptyText="No Highlights Yet." isCompact={highlightedPages.length > 4}>
             {highlightedPages.map((page) => (
               <DropdownItem
                 key={page}
                 label={`Page ${page}`}
+                isCompact={highlightedPages.length > 4}
                 onClick={() => {
                   setPage(page);
                   setOpen(false);
@@ -216,16 +218,18 @@ function NotesDropdown({
 
       <AnimatePresence>
         {open && (
-          <DropdownPanel title="Notes" emptyText="No Notes Yet.">
+          <DropdownPanel title="Notes" emptyText="No Notes Yet." isCompact={notes.length > 4}>
             {notes.map((note) => (
               <DropdownItem
                 key={note.id}
                 label={`Page ${note.pageNum}`}
                 subtitle={
-                  note.text.length > 40
+                  !(notes.length > 4) &&
+                  (note.text.length > 40
                     ? note.text.slice(0, 40) + "…"
-                    : note.text
+                    : note.text)
                 }
+                isCompact={notes.length > 4}
                 onClick={() => {
                   setPage(note.pageNum);
                   setOpen(false);
@@ -256,10 +260,12 @@ function DropdownPanel({
   title,
   emptyText,
   children,
+  isCompact,
 }: {
   title: string;
   emptyText: string;
   children: React.ReactNode;
+  isCompact?: boolean;
 }) {
   const hasChildren = Array.isArray(children)
     ? children.length > 0
@@ -271,20 +277,29 @@ function DropdownPanel({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -8, scale: 0.96 }}
       transition={{ duration: 0.15 }}
-      className="absolute right-0 top-full mt-2 w-56 sm:w-64 rounded-xl border border-border bg-white/95 backdrop-blur-xl shadow-2xl overflow-hidden z-60"
+      className="absolute right-0 top-full mt-2 w-48 sm:w-56 rounded-md border border-gray-200 bg-white shadow-xl overflow-hidden z-60"
     >
-      <div className="border-b border-border px-4 py-2.5">
-        <h4 className="text-sm font-semibold text-on-surface">{title}</h4>
+      <div
+        className="px-4 py-2"
+        style={{ background: "var(--color-brand-600, #2a5a96)" }}
+      >
+        <h4 className="text-sm font-semibold text-white">{title}</h4>
       </div>
       <div className="max-h-64 overflow-y-auto">
         {hasChildren ? (
-          <ul className="py-1">{children}</ul>
+          <ul className={isCompact ? "grid grid-cols-2 gap-1.5 p-2" : "py-1"}>{children}</ul>
         ) : (
-          <div className="px-4 py-6 text-center">
-            <div className="text-2xl mb-2 opacity-40">
-              {title === "Bookmarks" ? "🔖" : title === "Notes" ? "📝" : "✏️"}
+          <div className="px-4 py-8 text-center">
+            <div className="flex justify-center mb-2">
+              {title === "Bookmarks" ? (
+                <Bookmark size={28} className="text-gray-300" />
+              ) : title === "Notes" ? (
+                <FileText size={28} className="text-gray-300" />
+              ) : (
+                <Pencil size={28} className="text-gray-300" />
+              )}
             </div>
-            <span className="text-sm text-on-surface-muted">{emptyText}</span>
+            <span className="text-sm text-gray-400">{emptyText}</span>
           </div>
         )}
       </div>
@@ -296,22 +311,37 @@ function DropdownItem({
   label,
   subtitle,
   onClick,
+  isCompact,
 }: {
   label: string;
-  subtitle?: string;
+  subtitle?: string | false;
   onClick: () => void;
+  isCompact?: boolean;
 }) {
+  if (isCompact) {
+    return (
+      <li>
+        <button
+          onClick={onClick}
+          className="flex w-full items-center justify-center rounded bg-gray-50 px-2 py-1.5 text-[13px] font-medium text-gray-700 transition-colors hover:bg-[#eef2ff] hover:text-[#2a5a96] border border-gray-100 shadow-sm"
+        >
+          {label}
+        </button>
+      </li>
+    );
+  }
+
   return (
     <li>
       <button
         onClick={onClick}
-        className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm transition-all duration-200 hover:bg-surface-bright active:scale-[0.98]"
+        className="flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-sm transition-colors hover:bg-gray-50 active:bg-gray-100"
       >
         <ChevronRight size={14} className="shrink-0 text-brand-500" />
-        <div className="min-w-0">
-          <div className="font-medium text-on-surface">{label}</div>
+        <div className="min-w-0 flex-1">
+          <div className="font-medium text-gray-800">{label}</div>
           {subtitle && (
-            <div className="truncate text-xs text-on-surface-muted">
+            <div className="truncate text-xs text-gray-400 mt-0.5">
               {subtitle}
             </div>
           )}

@@ -2,7 +2,7 @@
 // Sidebar — Table of Contents
 // ============================================
 
-import { useRef, useState} from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { getTocData } from "@/config/toc.config";
@@ -16,8 +16,8 @@ export default function Sidebar() {
   const currentPage = useBookStore((s) => s.currentPage);
   const setPage = useBookStore((s) => s.setPage);
   const [showToc, setShowToc] = useState(false);
-  const [showVideoToc, setVideoToc] = useState(false)
-  const [showInteractivesToc, setInteractivesToc] = useState(false)
+  const [showVideoToc, setVideoToc] = useState(false);
+  const [showInteractivesToc, setInteractivesToc] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useClickOutside(ref, () => setSidebarOpen(false), isOpen);
@@ -34,7 +34,7 @@ export default function Sidebar() {
     setPage(page);
     setSidebarOpen(false);
   };
-  console.log(tocEntries)
+  console.log(tocEntries);
   return (
     <AnimatePresence>
       {isOpen && (
@@ -56,33 +56,31 @@ export default function Sidebar() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed left-0 top-0 bottom-0 z-70 flex w-full sm:w-80 max-w-[100vw] mt-100 p-10 sm:max-w-[85vw] flex-col bg-surface shadow-2xl pr-3 no-print"
+            className="fixed left-0 top-20 bottom-0 z-70 flex w-full sm:w-80 max-w-[100vw] sm:max-w-[85vw] flex-col bg-surface shadow-2xl no-print"
             role="navigation"
             aria-label="Table of Contents"
-
           >
-            
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-border px-6 py-10 p-10">
+            <div className="flex items-center justify-between border-b border-border px-5 py-4">
               <h2 className="text-lg font-semibold text-on-surface">
                 Contents
               </h2>
 
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="rounded-md p-2 text-on-surface-muted transition-colors hover:bg-surface-bright hover:text-on-surface"
+                className="flex items-center justify-center h-8 w-8 rounded-md text-on-surface-muted transition-colors"
                 aria-label="Close sidebar"
               >
-                <X size={22} />
+                <X className="ml-4" size={18} />
               </button>
             </div>
-            <div className="px-4 py-3 border-b border-border">
-            <button
+            <div className="border-b border-border">
+              <button
                 onClick={() => setShowToc(!showToc)}
-                className="flex w-full items-center justify-between rounded-md bg-surface-bright px-3 py-2 text-sm font-medium hover:bg-surface"
+                className="flex w-full items-center justify-between px-5 py-3 text-sm font-medium text-on-surface hover:bg-surface-bright transition-colors"
               >
-                <span className="p-5"> Table of Contents</span>
-                <span className="text-gray-300">{showToc ? "▼" : "▶"}</span>
+                <span>Table of Contents</span>
+                <span className="text-gray-400 text-xs">{showToc ? "▼" : "▶"}</span>
               </button>
             </div>
             {/* TOC List */}
@@ -95,7 +93,7 @@ export default function Sidebar() {
                   className="overflow-auto"
                 >
                   <ul className="space-y-1 px-1">
-                    {tocEntries.map((entry:any, index:number) => {
+                    {tocEntries.map((entry: any, index: number) => {
                       const isActive = currentPage === entry.page;
                       const isUnit = entry.isUnitHeader;
 
@@ -103,7 +101,7 @@ export default function Sidebar() {
                         <li key={`${entry.page}-${index}`}>
                           <button
                             onClick={() => handleNavigation(entry.page)}
-                            className={`flex w-full justify-between py-2 pr-6 p-5 text-left rounded-md transition
+                            className={`flex w-full justify-between py-1.5 px-5 text-left rounded-md transition
                               
                               ${
                                 isUnit
@@ -128,13 +126,15 @@ export default function Sidebar() {
                 </motion.div>
               )}
             </AnimatePresence>
-             <button
+            <div className="border-b border-border">
+              <button
                 onClick={() => setVideoToc(!showVideoToc)}
-                className="flex w-full items-center justify-between rounded-md bg-surface-bright px-3 py-2 text-sm font-medium hover:bg-surface"
+                className="flex w-full items-center justify-between px-5 py-3 text-sm font-medium text-on-surface hover:bg-surface-bright transition-colors"
               >
-                <span className="p-5">Animations</span>
-                <span className="text-gray-300">{showVideoToc ? "▼" : "▶"}</span>
-            </button>
+                <span>Animations</span>
+                <span className="text-gray-400 text-xs">{showVideoToc ? "▼" : "▶"}</span>
+              </button>
+            </div>
             <AnimatePresence>
               {showVideoToc && (
                 <motion.div
@@ -144,7 +144,7 @@ export default function Sidebar() {
                   className="overflow-auto"
                 >
                   <ul className="space-y-1 px-1">
-                    {tocEntries?.map((entry:any, index:number) => {
+                    {tocEntries?.map((entry: any, index: number) => {
                       const isActive = currentPage === entry.page;
                       const isUnit = entry.isUnitHeader;
 
@@ -152,7 +152,7 @@ export default function Sidebar() {
                         <li key={`${entry.page}-${index}`}>
                           <button
                             onClick={() => handleNavigation(entry.page)}
-                            className={`flex w-full justify-between py-2 pr-6 text-left p-5 rounded-md transition
+                            className={`flex w-full justify-between py-1.5 px-5 text-left rounded-md transition
                               
                               ${
                                 isUnit
@@ -177,13 +177,15 @@ export default function Sidebar() {
                 </motion.div>
               )}
             </AnimatePresence>
-             <button
+            <div className="border-b border-border">
+              <button
                 onClick={() => setInteractivesToc(!showInteractivesToc)}
-                className="flex w-full items-center justify-between rounded-md bg-surface-bright px-3 py-2 text-sm font-medium hover:bg-surface"
+                className="flex w-full items-center justify-between px-5 py-3 text-sm font-medium text-on-surface hover:bg-surface-bright transition-colors"
               >
-                <span className="p-5">Interactivities</span>
-                <span className="text-gray-300">{showInteractivesToc ? "▼" : "▶"}</span>
-            </button>
+                <span>Interactivities</span>
+                <span className="text-gray-400 text-xs">{showInteractivesToc ? "▼" : "▶"}</span>
+              </button>
+            </div>
             <AnimatePresence>
               {showInteractivesToc && (
                 <motion.div
@@ -193,15 +195,16 @@ export default function Sidebar() {
                   className="overflow-auto"
                 >
                   <ul className="space-y-1 px-1">
-                    {(tocEntries as any)?.interactiveToc?.map((entry:any, index:number) => {
-                      const isActive = currentPage === entry.page;
-                      const isUnit = entry.isUnitHeader;
+                    {(tocEntries as any)?.interactiveToc?.map(
+                      (entry: any, index: number) => {
+                        const isActive = currentPage === entry.page;
+                        const isUnit = entry.isUnitHeader;
 
-                      return (
-                        <li key={`${entry.page}-${index}`}>
-                          <button
-                            onClick={() => handleNavigation(entry.page)}
-                            className={`flex w-full justify-between py-2 pr-6 text-left p-5 rounded-md transition
+                        return (
+                          <li key={`${entry.page}-${index}`}>
+                            <button
+                              onClick={() => handleNavigation(entry.page)}
+                              className={`flex w-full justify-between py-1.5 px-5 text-left rounded-md transition
                               
                               ${
                                 isUnit
@@ -215,23 +218,21 @@ export default function Sidebar() {
                                   : ""
                               }
                             `}
-                          >
-                            <span className="text-xs">{entry.title}</span>
-                            <span className="text-xs">{entry.page}</span>
-                          </button>
-                        </li>
-                      );
-                    })}
+                            >
+                              <span className="text-xs">{entry.title}</span>
+                              <span className="text-xs">{entry.page}</span>
+                            </button>
+                          </li>
+                        );
+                      },
+                    )}
                   </ul>
                 </motion.div>
               )}
             </AnimatePresence>
-
           </motion.nav>
-         
         </>
       )}
-      
     </AnimatePresence>
   );
 }

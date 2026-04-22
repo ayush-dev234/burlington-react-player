@@ -158,7 +158,7 @@ export default function Toolbar() {
   return (
     <footer
       id="toolBox"
-      className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 flex h-11 items-center justify-center gap-0.5 sm:gap-1 rounded-full bg-white/85 backdrop-blur-xl px-2 sm:px-3 shadow-[0_4px_30px_rgba(0,0,0,0.12)] border border-gray-200/60 no-print transition-all duration-300 max-w-[96vw]"
+      className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 flex h-10 items-center justify-center gap-0.5 rounded-full bg-white/85 backdrop-blur-xl px-1.5 sm:px-2 shadow-[0_4px_30px_rgba(0,0,0,0.12)] border border-gray-200/60 no-print transition-all duration-300 max-w-[96vw]"
     >
       {/* Table of Contents */}
       <ToolButton
@@ -305,7 +305,7 @@ export default function Toolbar() {
             <Focus size={20} />
           </ToolButton>
 
-          {/* Spotlight */}
+          {/* Spotlight
           <ToolButton
             id="app-btn-spotlight"
             title="Spotlight"
@@ -314,7 +314,7 @@ export default function Toolbar() {
             <svg width={20} height={20} viewBox="0 0 20 20" fill="currentColor">
               <path d="M3.86 7.847a.5.5 0 0 0-.72-.694L1.399 8.959a1.5 1.5 0 0 0 0 2.082l1.74 1.807a.5.5 0 0 0 .72-.694l-1.74-1.807a.5.5 0 0 1 0-.694zM7.152 3.14a.5.5 0 1 0 .694.72l1.806-1.74a.5.5 0 0 1 .694 0l1.806 1.74a.5.5 0 0 0 .694-.719L11.04 1.4a1.5 1.5 0 0 0-2.082 0zm9.707 4.012a.5.5 0 1 0-.72.694l1.746 1.811a.5.5 0 0 1 0 .695l-1.745 1.8a.5.5 0 0 0 .718.696l1.744-1.8a1.5 1.5 0 0 0 .003-2.085zM7.846 16.14a.5.5 0 1 0-.694.72l1.812 1.745a1.5 1.5 0 0 0 2.084-.003l1.799-1.743a.5.5 0 1 0-.696-.718l-1.799 1.743a.5.5 0 0 1-.694 0zM8 6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM7 8a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z" />
             </svg>
-          </ToolButton>
+          </ToolButton> */}
 
           <ToolSeparator />
 
@@ -400,7 +400,7 @@ function ToolButton({
       id={id}
       onClick={onClick}
       title={title}
-      className={`flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg text-gray-600 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 active:scale-90 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1 ${
+      className={`flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-lg text-gray-600 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 active:scale-90 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1 ${
         active ? "bg-brand-100 text-brand-600 shadow-inner" : ""
       }`}
     >
