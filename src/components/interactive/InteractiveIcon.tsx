@@ -26,9 +26,11 @@ export default function InteractiveIcon({
   onClick,
 }: InteractiveIconProps) {
   const [hovered, setHovered] = useState(false);
-  
+
   // Try to find it in the map, OR if it's already a path (contains '/'), use it directly. Otherwise falback to interactivity.
-  const iconSrc = ICON_SRC_MAP[item.icon] || (item.icon.includes('/') ? item.icon : ICON_SRC_MAP.interactivity);
+  const iconSrc =
+    ICON_SRC_MAP[item.icon] ||
+    (item.icon.includes("/") ? item.icon : ICON_SRC_MAP.interactivity);
 
   return (
     <button
