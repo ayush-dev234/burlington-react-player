@@ -72,6 +72,9 @@ export default function DrawingToolbar() {
       ? currentPage + 1
       : null;
 
+  const leftHasMarks = annotatedPages.includes(currentPage);
+  const rightHasMarks = rightPage ? annotatedPages.includes(rightPage) : false;
+
   // ── Get the Fabric canvas instance ────────────────────────────────
   const getFabricCanvas = useCallback((): FabricCanvas | null => {
     return (window as any).__fabricCanvas ?? null;
@@ -79,36 +82,53 @@ export default function DrawingToolbar() {
 
   // ── Split & save helper (mirrors DrawingCanvas logic) ─────────────
   const splitAndSave = useCallback(
-    (fc: FabricCanvas) => {
-      if (viewMode !== "double" || !rightPage) {
-        const json = JSON.stringify(fc.toJSON());
-        saveCanvas(currentPage, json);
-        return;
+  (fc: FabricCanvas) => {
+    const json = fc.toJSON();
+    const allObjects = fc.getObjects();
+
+    // SINGLE PAGE MODE
+    if (viewMode !== "double" || !rightPage) {
+      saveCanvas(currentPage, JSON.stringify(json));
+      return;
+    }
+
+    // DOUBLE PAGE MODE
+    const halfW = fc.getWidth() / 2;
+
+    const leftObjs: any[] = [];
+    const rightObjs: any[] = [];
+
+    allObjects.forEach((obj: any) => {
+      const raw = obj.toJSON();
+      const bound = obj.getBoundingRect();
+      const centerX = bound.left + bound.width / 2;
+
+      // LEFT PAGE
+      if (centerX < halfW) {
+        leftObjs.push(raw);
+      } 
+      // RIGHT PAGE
+      else {
+        rightObjs.push({
+          ...raw,
+          left: (raw.left || 0) - halfW, // shift to right page
+        });
       }
+    });
 
-      const halfW = fc.getWidth() / 2;
-      const allObjects = fc.getObjects();
-      const leftObjs: any[] = [];
-      const rightObjs: any[] = [];
+    // SAVE SEPARATELY
+    saveCanvas(
+      currentPage,
+      JSON.stringify({ ...json, objects: leftObjs })
+    );
 
-      allObjects.forEach((obj: any) => {
-        const raw = obj.toJSON();
-        const bound = obj.getBoundingRect();
-        const centreX = bound.left + bound.width / 2;
-
-        if (centreX < halfW) {
-          leftObjs.push(raw);
-        } else {
-          rightObjs.push({ ...raw, left: (raw.left ?? 0) - halfW });
-        }
-      });
-
-      const baseJson = fc.toJSON();
-      saveCanvas(currentPage, JSON.stringify({ ...baseJson, objects: leftObjs }));
-      saveCanvas(rightPage, JSON.stringify({ ...baseJson, objects: rightObjs }));
-    },
-    [viewMode, rightPage, currentPage, saveCanvas],
-  );
+    saveCanvas(
+      rightPage,
+      JSON.stringify({ ...json, objects: rightObjs })
+    );
+  },
+  [viewMode, rightPage, currentPage, saveCanvas]
+);
 
   // ── Undo handler ──────────────────────────────────────────────────
   const handleUndo = useCallback(() => {
@@ -128,17 +148,44 @@ export default function DrawingToolbar() {
   }, [getFabricCanvas, splitAndSave]);
 
   // ── Clear handler ─────────────────────────────────────────────────
-  const handleClear = useCallback(() => {
+  const handleClear = useCallback((target: "left" | "right" | "all") => {
     const fc = getFabricCanvas();
     if (!fc) return;
 
-    fc.clear();
-    fc.backgroundColor = "transparent";
-    fc.renderAll();
-    clearCanvas(currentPage);
-    if (rightPage) clearCanvas(rightPage);
+    if (target === "all" || !rightPage) {
+      fc.clear();
+      fc.backgroundColor = "transparent";
+      fc.renderAll();
+      clearCanvas(currentPage);
+      if (rightPage) clearCanvas(rightPage);
+    } else {
+      // Clear only specific page half
+      const halfW = fc.getWidth() / 2;
+      const allObjects = fc.getObjects();
+      
+      const objectsToRemove: any[] = [];
+      allObjects.forEach((obj) => {
+        const bound = obj.getBoundingRect();
+        const centerX = bound.left + bound.width / 2;
+        if (target === "left" && centerX < halfW) {
+          objectsToRemove.push(obj);
+        } else if (target === "right" && centerX >= halfW) {
+          objectsToRemove.push(obj);
+        }
+      });
+
+      objectsToRemove.forEach((obj) => {
+        fc.remove(obj);
+      });
+      
+      fc.renderAll();
+      
+      // Save changes (which will update the right/left storage respectively)
+      splitAndSave(fc);
+    }
+
     setShowConfirm(false);
-  }, [getFabricCanvas, currentPage, rightPage, clearCanvas]);
+  }, [getFabricCanvas, currentPage, rightPage, clearCanvas, splitAndSave]);
 
   // ── Page selection handler ────────────────────────────────────────
   const handlePageChange = useCallback(
@@ -255,10 +302,50 @@ export default function DrawingToolbar() {
                   <Trash2 size={18} strokeWidth={2.5} />
                   Clear
                 </button>
+              ) : rightPage && (leftHasMarks || rightHasMarks) ? (
+                <div className="flex flex-col gap-2 bg-red-50/50 p-2 rounded-sm border border-red-100">
+                  <div className="text-xs font-bold text-gray-700 text-center block tracking-wide">
+                    Clear which page?
+                  </div>
+                  <div className="flex gap-2">
+                    {leftHasMarks && (
+                      <button
+                        onClick={() => handleClear("left")}
+                        className="flex-1 rounded-sm bg-linear-to-b from-red-500 to-red-600 border border-red-700 p-2 text-xs font-bold text-white shadow-sm hover:from-red-600 hover:to-red-700"
+                      >
+                        Pg {currentPage}
+                      </button>
+                    )}
+                    {rightHasMarks && (
+                      <button
+                        onClick={() => handleClear("right")}
+                        className="flex-1 rounded-sm bg-linear-to-b from-red-500 to-red-600 border border-red-700 p-2 text-xs font-bold text-white shadow-sm hover:from-red-600 hover:to-red-700"
+                      >
+                        Pg {rightPage}
+                      </button>
+                    )}
+                  </div>
+                  <div className="flex gap-2 mt-1">
+                    {leftHasMarks && rightHasMarks && (
+                      <button
+                        onClick={() => handleClear("all")}
+                        className="flex-1 rounded-sm bg-linear-to-b from-red-700 to-red-800 border border-red-900 p-2 text-[11px] font-bold text-white shadow-sm hover:from-red-800 hover:to-red-900 uppercase tracking-widest"
+                      >
+                        Both
+                      </button>
+                    )}
+                    <button
+                      onClick={() => setShowConfirm(false)}
+                      className="flex-1 rounded-sm bg-linear-to-b from-white to-gray-50 border border-gray-300 p-2 text-[11px] font-bold text-gray-700 shadow-sm hover:bg-gray-100 uppercase tracking-widest"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
               ) : (
                 <div className="flex gap-2">
                   <button
-                    onClick={handleClear}
+                    onClick={() => handleClear("all")}
                     className="flex-1 rounded-sm bg-linear-to-b from-red-500 to-red-600 border border-red-700 px-3 py-3 text-[14px] font-bold text-white shadow-sm hover:from-red-600 hover:to-red-700"
                   >
                     Yes, Clear

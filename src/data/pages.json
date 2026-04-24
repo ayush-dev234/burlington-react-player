@@ -1,60 +1,79 @@
 {
-  "7": [
+  "10": [
     {
-      "x": "54.1",
-      "y": "15",
+      "id": 2548,
+      "x": 0.49,
+      "y": 12.05,
       "title": "Animation",
-      "icon": "./img/icons/video.svg",
-      "link": "resources/Animations/Page_7.mp4",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u1_2.mp4",
       "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "11": [
+    {
+      "id": "1e96976b-b03c-4102-b7b6-695503d8aabd",
+      "x": 0.8,
+      "y": 14.75,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_11",
+      "type": "iframe",
       "size": "1024x720"
     },
     {
-      "x": "0",
-      "y": "42",
-      "title": "Audio",
-      "icon": "./img/icons/audio.svg",
-      "link": "audio/logo-audio.mp3",
-      "type": "audio"
-    }
-  ],
-  "12": [
-    {
-      "x": "0",
-      "y": "10",
+      "id": "c80afd2e-bb4a-4590-898c-29eacc284bef",
+      "x": 0.6,
+      "y": 47.62,
       "title": "Interactivity",
-      "icon": "./img/icons/interactivities.svg",
-      "link": "resources/Interactivities/Page/index.html?page=Page_12",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_11_1",
       "type": "iframe",
       "size": "1024x720"
     }
   ],
   "13": [
     {
-      "x": "72.1",
-      "y": "7",
-      "title": "Animation",
-      "icon": "./img/icons/video.svg",
-      "link": "resources/Animations/Page_13.mp4",
-      "type": "video",
+      "id": "34d4235d-cf5d-4a26-97d4-988f46a03fa9",
+      "x": 0.2,
+      "y": 62.98,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_13",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "14": [
+    {
+      "id": "0b7f500b-8864-44a6-b6d8-c8b6510f6c8f",
+      "x": 0.8,
+      "y": 6.45,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_14",
+      "type": "iframe",
       "size": "1024x720"
     }
   ],
   "15": [
     {
-      "x": "0",
-      "y": "5",
+      "id": "207c90c6-8d86-4b01-8672-b67a9b7e1c44",
+      "x": 0,
+      "y": 13.52,
       "title": "Interactivity",
-      "icon": "./img/icons/interactivities.svg",
+      "icon": "img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page/index.html?page=Page_15",
       "type": "iframe",
       "size": "1024x720"
     },
     {
-      "x": "0",
-      "y": "28",
+      "id": "9fe979d1-bb6b-49e8-bea0-d3888099df6f",
+      "x": 0,
+      "y": 53.92,
       "title": "Interactivity",
-      "icon": "./img/icons/interactivities.svg",
+      "icon": "img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page/index.html?page=Page_15_1",
       "type": "iframe",
       "size": "1024x720"
@@ -62,47 +81,1617 @@
   ],
   "16": [
     {
+      "id": "f285fed0-d64b-42d9-8e32-9e9a61f09f56",
       "x": "0",
-      "y": "5",
-      "title": "Animation",
-      "icon": "./img/icons/video.svg",
-      "link": "resources/Animations/Page_16.mp4",
-      "type": "video",
-      "size": "1024x720"
-    },
-    {
-      "x": "0",
-      "y": "25",
+      "y": "10",
       "title": "Interactivity",
-      "icon": "./img/icons/interactivities.svg",
+      "icon": "img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page/index.html?page=Page_16",
       "type": "iframe",
       "size": "1024x720"
     },
     {
-      "x": "0",
-      "y": "45",
+      "id": "0bea4361-1aac-449c-89ee-4df950639c21",
+      "x": 0.8,
+      "y": 31.8,
       "title": "Interactivity",
-      "icon": "./img/icons/interactivities.svg",
+      "icon": "img/icons/interactivities.svg",
       "link": "resources/Interactivities/Page/index.html?page=Page_16_1",
       "type": "iframe",
       "size": "1024x720"
-    },
+    }
+  ],
+  "17": [
     {
-      "x": "0",
-      "y": "60",
+      "id": 2557,
+      "x": 0.82,
+      "y": 12.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u1_3.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "19": [
+    {
+      "id": "2b88e04f-cde3-4807-83c9-25baf52e8d89",
+      "x": 1.21,
+      "y": 15.51,
       "title": "Interactivity",
-      "icon": "./img/icons/interactivities.svg",
-      "link": "resources/Interactivities/Page/index.html?page=Page_16_2",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_19",
       "type": "iframe",
       "size": "1024x720"
     },
     {
-      "x": "0",
-      "y": "75",
+      "id": "e219e884-9c26-4f85-a4c2-d894769ab024",
+      "x": 1.41,
+      "y": 49.77,
       "title": "Interactivity",
-      "icon": "./img/icons/interactivities.svg",
-      "link": "resources/Interactivities/Page/index.html?page=Page_16_3",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_19_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "20": [
+    {
+      "id": "ae0d1f8e-95f1-4dec-b46d-d555e7d441e7",
+      "x": 0.6,
+      "y": 7.53,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_20",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "2bf21581-3bfd-43ed-a918-a1ec1bd01c3b",
+      "x": 1.01,
+      "y": 57.45,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_20_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "23": [
+    {
+      "id": "ba04b014-8cec-4312-af73-2922908899b1",
+      "x": 0.8,
+      "y": 26.42,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_23",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "24": [
+    {
+      "id": 2563,
+      "x": 0.66,
+      "y": 12.17,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u2_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "25": [
+    {
+      "id": "3c75a219-b7f5-4aed-8a3d-619fa7dfe12f",
+      "x": 1.41,
+      "y": 10.6,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_25",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "26": [
+    {
+      "id": "105ca800-d113-456d-889c-d55affb84688",
+      "x": -0.2,
+      "y": 56.68,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_26",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "27": [
+    {
+      "id": "cbb98ae3-6985-4449-9599-6ef6207c2631",
+      "x": 1.21,
+      "y": 7.07,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_27",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "521a4b30-a972-4004-a7d0-1e044fff5f5b",
+      "x": 1.21,
+      "y": 33.49,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_27_1",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "0701526c-a848-4766-8a8b-d827b9c0861c",
+      "x": 1.21,
+      "y": 67.43,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_27_2",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "28": [
+    {
+      "id": "2b56a81f-6213-4e9f-8ca2-6b32f37ed0e1",
+      "x": 0.8,
+      "y": 6.76,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_28",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "e6e7f86c-38e7-4076-a2cb-6b221f8e3bf7",
+      "x": 0.8,
+      "y": 41.17,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_28_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "31": [
+    {
+      "id": "e8cd53cb-fd57-4d18-9944-e6052b51002f",
+      "x": 0.6,
+      "y": 26.42,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_31",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "6a4e00fb-387e-4881-8efe-1afbe3ec1740",
+      "x": 1.01,
+      "y": 72.66,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_31_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "33": [
+    {
+      "id": 2573,
+      "x": 1.15,
+      "y": 6.4,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u3_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "36": [
+    {
+      "id": "c900e0e4-9d86-40f7-9e78-c512c9db3aa8",
+      "x": 0,
+      "y": 12.6,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_36",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "28bdcbe3-779a-4db2-bc0d-f1cfe2c43ece",
+      "x": 0.2,
+      "y": 40.09,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_36_1",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "657449ef-644a-4976-b885-580dda90d17d",
+      "x": 0.2,
+      "y": 62.98,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_36_2",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "39": [
+    {
+      "id": "4778915f-07a7-404c-9957-e595d8eaadad",
+      "x": 0.6,
+      "y": 26.42,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_39",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "0bd7df12-cc29-4019-a159-cc45522e0283",
+      "x": 1.01,
+      "y": 67.9,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_39_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "40": [
+    {
+      "id": 2579,
+      "x": 0.82,
+      "y": 12.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u4_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "41": [
+    {
+      "id": "af705109-5e39-48b2-b024-865bb80ca324",
+      "x": 0.8,
+      "y": 12.29,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_41",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "bd422c04-188e-46e4-9c7f-32042b372143",
+      "x": 1.01,
+      "y": 48.23,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_41_1",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "eb25f4e9-f7af-480f-8435-2adfa37bfc4f",
+      "x": 0.6,
+      "y": 65.9,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_41_2",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "42": [
+    {
+      "id": "a05d644b-f8ca-4e81-9c2d-f337557976ef",
+      "x": 0.6,
+      "y": 6.76,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_42",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "c5f0cae8-5ecb-4b4e-b2b0-5183e04c55b8",
+      "x": 0.8,
+      "y": 54.07,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_42_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "45": [
+    {
+      "id": "f407c70e-3d60-4a49-bd7a-a60d75d80402",
+      "x": 0.8,
+      "y": 26.27,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_45",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "9eab2eed-a99e-427c-8144-50df769412a8",
+      "x": 0.6,
+      "y": 62.06,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_45_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "47": [
+    {
+      "id": 2587,
+      "x": 0.66,
+      "y": 28.98,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u5_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "48": [
+    {
+      "id": "61f0e131-5b2b-4ecc-8e74-6c6cdc3d1404",
+      "x": -0.2,
+      "y": 55.45,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_48",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "51": [
+    {
+      "id": "f0b0b746-cb67-4f1f-88e8-db13026dcb5e",
+      "x": 0.6,
+      "y": 51.61,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_51",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "52": [
+    {
+      "id": "adced5ca-013d-4cdf-8421-9407c0b16342",
+      "x": 1.01,
+      "y": 6.76,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_52",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "989946eb-74ca-4618-b17b-014ffa6673b1",
+      "x": 0.8,
+      "y": 25.19,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_52_1",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "ad0ae17a-573e-47e1-a55c-4900c79d47d5",
+      "x": 1.01,
+      "y": 45.01,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_52_2",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "195877b2-4804-4562-99a2-f9961e1b2c20",
+      "x": 1.01,
+      "y": 63.13,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_52_3",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "55": [
+    {
+      "id": "2d842578-5648-4114-9567-e3c328a36973",
+      "x": 0.8,
+      "y": 23.2,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_55",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "57": [
+    {
+      "id": 2595,
+      "x": 1.15,
+      "y": 12.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u6_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "59": [
+    {
+      "id": "285d1c1e-3e47-431c-9abe-a9b5041f7164",
+      "x": 0.6,
+      "y": 60.68,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_59",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "60": [
+    {
+      "id": "c6969af4-902b-474b-b425-672f483bc918",
+      "x": 0.8,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_60",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "213d46a0-028a-4a56-886e-2fe1ca18ddde",
+      "x": 0.6,
+      "y": 29.49,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_60_1",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "1747fe81-5f2c-4f8c-b7be-5e8d29fe467f",
+      "x": 0.8,
+      "y": 61.9,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_60_2",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "63": [
+    {
+      "id": 2600,
+      "x": 0.82,
+      "y": 11.92,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u6_4.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "64": [
+    {
+      "id": "2de1bfb9-bb45-4812-a74b-86176a7e6c50",
+      "x": 0.6,
+      "y": 60.68,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_64",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "65": [
+    {
+      "id": "872576a7-7fa2-4f99-b464-252f822b913e",
+      "x": 1.01,
+      "y": 6.61,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_65",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "d4805ba3-40da-4aee-8ae1-21887617c009",
+      "x": 0.8,
+      "y": 40.55,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_65_1",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "3c6b78d7-1983-452c-aba9-d2acf9bc1188",
+      "x": 1.01,
+      "y": 59.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_65_2",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "66": [
+    {
+      "id": "5adb6bbb-7964-4fb6-89a0-d98a0996dd80",
+      "x": 0.4,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_66",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "fa7189a9-28aa-4a4f-bf4e-395657190daf",
+      "x": 0.8,
+      "y": 64.82,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_66_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "67": [
+    {
+      "id": "d694361e-1949-4d4f-87e3-44e52269a402",
+      "x": 0.8,
+      "y": 17.51,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_67",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "69": [
+    {
+      "id": 2608,
+      "x": 0.66,
+      "y": 14.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u6_6.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "70": [
+    {
+      "id": "a0b7681c-d26e-4b99-9ad6-671bbb0c6e84",
+      "x": -0.4,
+      "y": 52.53,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_70",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "71": [
+    {
+      "id": "9a534c09-b65f-4012-ab6f-a911f1e7945c",
+      "x": 1.61,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_71",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "a2eb4387-a5b2-4e3d-92a3-5430fd07c89d",
+      "x": 1.01,
+      "y": 36.87,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_71_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "72": [
+    {
+      "id": "28c0a2a7-0298-43bf-a180-cb5427261723",
+      "x": 0.8,
+      "y": 7.07,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_72",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "f03e0596-cbb6-4f67-939e-eb311ab5a184",
+      "x": 0.6,
+      "y": 44.7,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_72_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "73": [
+    {
+      "id": "912d8405-a178-48de-822f-ac451c885fc4",
+      "x": 0.8,
+      "y": 17.82,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_73",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "75": [
+    {
+      "id": 2615,
+      "x": 0.66,
+      "y": 12.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u6_8.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "76": [
+    {
+      "id": "02f8542a-12d8-4648-814f-475cc3217050",
+      "x": -0.2,
+      "y": 56.37,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_76",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "77": [
+    {
+      "id": "78d0fa08-8b41-4566-b32a-b0ca4216ec76",
+      "x": 1.01,
+      "y": 7.37,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_77",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "bcb4d281-eb60-4d39-9bde-da684f7e9207",
+      "x": 1.21,
+      "y": 62.52,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_77_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "78": [
+    {
+      "id": "b4c3fd59-a6f2-4499-acb9-eed4799cfd89",
+      "x": 0.6,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_78",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "1278731f-51fb-4509-9d5a-7ef3bc4b2ae5",
+      "x": 1.01,
+      "y": 47.77,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_78_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "83": [
+    {
+      "id": "13ba53f1-9ad6-42bc-bf87-21d71160b7c0",
+      "x": 0.8,
+      "y": 22.43,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_83",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "85": [
+    {
+      "id": 2622,
+      "x": 0.49,
+      "y": 11.92,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u7_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "88": [
+    {
+      "id": "c2e3ea41-44d8-4401-b4cb-4023de53b80f",
+      "x": 0.2,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_88",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "89": [
+    {
+      "id": "785720fc-e7fe-4f4e-9014-37f3ffae16f1",
+      "x": 1.01,
+      "y": 6.76,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_89",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "0a93961b-b3aa-4eb0-a691-dff36f2e9634",
+      "x": 1.01,
+      "y": 49.31,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_89_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "90": [
+    {
+      "id": "108f1b97-a8fc-459e-baa7-8fe5768177a8",
+      "x": 0.6,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_90",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "3ad1799f-2cd6-4a0d-9246-cb1c1016acd4",
+      "x": 0.4,
+      "y": 67.28,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_90_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "91": [
+    {
+      "id": "63904278-2757-41f1-a732-848d8a27fd39",
+      "x": 0.8,
+      "y": 6.76,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_91",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "93": [
+    {
+      "id": "32b214b8-eb01-49e3-a434-0f46916ff58a",
+      "x": 0.4,
+      "y": 75.88,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_93",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "95": [
+    {
+      "id": 2630,
+      "x": 0.82,
+      "y": 12.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u7_4.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "98": [
+    {
+      "id": "6b7a3ba6-c89b-4377-9a4a-67055972ec30",
+      "x": -0.2,
+      "y": 14.13,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_98",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "176add13-fc52-43f6-93b4-90055092885a",
+      "x": 0.6,
+      "y": 46.85,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_98_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "99": [
+    {
+      "id": "6a4e296b-d980-4883-ad96-49e77c2539f2",
+      "x": 1.21,
+      "y": 7.22,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_99",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "2de32020-ccc6-4117-9392-c8bcaee248e8",
+      "x": 1.41,
+      "y": 32.72,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_99_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "100": [
+    {
+      "id": "c526cc0f-e87e-46ed-85d0-b84078e3b0c7",
+      "x": 0.2,
+      "y": 17.2,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_100",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "101": [
+    {
+      "id": 2636,
+      "x": 0.99,
+      "y": 47.68,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u7_6.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "104": [
+    {
+      "id": "19225c68-5bb9-4ef8-968c-a074ac3a374d",
+      "x": 0.2,
+      "y": 14.13,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_104",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "c7dcbc4f-cc34-467d-8d87-6305eb52a825",
+      "x": 1.01,
+      "y": 43.78,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_104_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "105": [
+    {
+      "id": "fe791976-414d-4a99-8ddb-26d5a5169322",
+      "x": 1.41,
+      "y": 7.22,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_105",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "45304d12-a2aa-489f-a72a-bacf73b8be5a",
+      "x": 1.41,
+      "y": 46.85,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_105_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "106": [
+    {
+      "id": "1a674a4e-76ca-42b0-a31f-1bb9f4b58aa2",
+      "x": 0.8,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_106",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "0704033b-ca31-4fc4-aae0-52e7849104c4",
+      "x": 1.01,
+      "y": 38.25,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_106_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "109": [
+    {
+      "id": "9560b8ad-3e2e-4fda-a5cd-89f38edebe90",
+      "x": 0.6,
+      "y": 23.66,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_109",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "111": [
+    {
+      "id": 2644,
+      "x": 0.82,
+      "y": 12.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u8_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "113": [
+    {
+      "id": "a1215162-b635-4064-b4b0-c77cac6015ee",
+      "x": 0,
+      "y": 33.49,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_113",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "c3a47c69-48f6-42e9-8e5e-ad8b03ddda7c",
+      "x": 0.8,
+      "y": 69.28,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_113_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "114": [
+    {
+      "id": "b8aa26e9-1d1a-4335-b5df-388356ab2843",
+      "x": 0.8,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_114",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "e283dbce-6696-45f7-a94c-d78cf232fcf7",
+      "x": 0.8,
+      "y": 24.58,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_114_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "117": [
+    {
+      "id": "b38e6781-8c48-4cca-9434-02c3a8d8e227",
+      "x": 0.8,
+      "y": 26.27,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_117",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "1dde3c78-b535-48a3-94ec-a9bac3060a5f",
+      "x": 1.01,
+      "y": 46.08,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_117_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "119": [
+    {
+      "id": 2651,
+      "x": 0.82,
+      "y": 12.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u9_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "120": [
+    {
+      "id": "a5107cbd-59ae-4b3a-a195-90995e9f28cf",
+      "x": -0.8,
+      "y": 25.81,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_120",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "121": [
+    {
+      "id": 2653,
+      "x": 0.82,
+      "y": 12.17,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u9_3.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "122": [
+    {
+      "id": "78e61fbf-db76-47f0-bd39-dfe9cd525c94",
+      "x": -0.2,
+      "y": 15.82,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_122",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "90f3dd1c-a9ee-4495-9c53-2727ab5563d6",
+      "x": 0.6,
+      "y": 53.3,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_122_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "123": [
+    {
+      "id": "d40aaca5-af17-4572-acf3-615636f95367",
+      "x": 1.21,
+      "y": 7.37,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_123",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "1b3f093c-ef85-4e8e-905b-df5fe17ecac5",
+      "x": 1.61,
+      "y": 37.94,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_123_1",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "87e77104-e5d4-4860-8217-43f927d2a6ea",
+      "x": 1.61,
+      "y": 64.36,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_123_2",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "124": [
+    {
+      "id": "fb721c6f-6209-4301-8770-23eb980096f5",
+      "x": 0.6,
+      "y": 7.37,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_124",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "3bff1f95-ce98-4fb1-937c-6eb45a635833",
+      "x": 0.6,
+      "y": 39.17,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_124_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "127": [
+    {
+      "id": "317671d7-7404-4006-ae5a-05e26f62ec13",
+      "x": 0.8,
+      "y": 59.29,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_127",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "129": [
+    {
+      "id": 2662,
+      "x": 0.66,
+      "y": 12.67,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u10_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "132": [
+    {
+      "id": "d363def4-8836-4f91-9c57-6157c482750d",
+      "x": 0.2,
+      "y": 14.59,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_132",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "d20b50a2-531f-4227-8476-5a9a3142488e",
+      "x": 0.4,
+      "y": 38.56,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_132_1",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "50de00c2-6aa7-4626-a844-787031deaa1b",
+      "x": 1.01,
+      "y": 63.59,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_132_2",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "133": [
+    {
+      "id": "09e8978c-47ce-4718-85ee-efa8cf991b35",
+      "x": 1.21,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_133",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "d3c0ef51-25f7-4fca-bc9d-a454dbe1f813",
+      "x": 1.01,
+      "y": 58.99,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_133_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "134": [
+    {
+      "id": "2b782921-a7f8-4c6e-bd10-ce802356ec89",
+      "x": 1.01,
+      "y": 6.45,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_134",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "b3903d64-f7c5-4f72-9469-2bc307eb3f55",
+      "x": 1.21,
+      "y": 52.53,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_134_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "139": [
+    {
+      "id": 2670,
+      "x": 0.82,
+      "y": 12.8,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u11_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "142": [
+    {
+      "id": "20cb0796-9223-4156-b709-ae484edcd2d7",
+      "x": -0.4,
+      "y": 14.29,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_142",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "143": [
+    {
+      "id": "bd03a523-b097-40c8-856f-b0a2b6f136ea",
+      "x": 1.21,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_143",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "147": [
+    {
+      "id": 2673,
+      "x": 0.99,
+      "y": 12.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u12_2.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "149": [
+    {
+      "id": "6063b796-b5f4-42ea-8512-e57dc0baa166",
+      "x": -0.2,
+      "y": 45.93,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_149",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "150": [
+    {
+      "id": "5a416abf-ab68-4419-a169-61ff01779cc4",
+      "x": 1.01,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_150",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "524525cc-766a-4ae9-be7a-eeed31f68154",
+      "x": 0.8,
+      "y": 50.08,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_150_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "152": [
+    {
+      "id": 2677,
+      "x": 0.82,
+      "y": 12.05,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u12_4.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "154": [
+    {
+      "id": "f1f95b4b-7e55-4c59-bc4f-2a3d48e651f9",
+      "x": -0.4,
+      "y": 46.39,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_154",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "155": [
+    {
+      "id": "b2fb2d4f-1814-43a1-bb0b-b2de27247bca",
+      "x": 1.61,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_155",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "38b3c9fb-f90a-481a-975a-f5605645e778",
+      "x": 1.41,
+      "y": 43.47,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_155_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "156": [],
+  "157": [
+    {
+      "id": 2681,
+      "x": 0.99,
+      "y": 6.4,
+      "title": "Animation",
+      "icon": "img/icons/video.svg",
+      "link": "resources/Animations/be_eg7_u12_5.mp4",
+      "type": "video",
+      "size": "1024x720"
+    }
+  ],
+  "159": [
+    {
+      "id": "a5272a88-2331-48e8-b8ab-3149aee9a4c7",
+      "x": 0.2,
+      "y": 14.75,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_159",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "998418c2-79bb-4c0c-9003-a68344c6c848",
+      "x": 0.8,
+      "y": 65.13,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_159_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "160": [
+    {
+      "id": "3f26d80e-3c10-47c8-8344-6d89986282ee",
+      "x": 1.01,
+      "y": 7.07,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_160",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "6186ae70-7953-451f-98c1-7ba933017884",
+      "x": 0.8,
+      "y": 53.76,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_160_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "164": [
+    {
+      "id": "186738e6-89be-494f-a09f-8714a66d0c70",
+      "x": 0.4,
+      "y": 12.29,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_164",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "165": [
+    {
+      "id": "1f6211ce-2b50-4291-8f3f-4316414831d9",
+      "x": 1.01,
+      "y": 7.07,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_165",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "166": [
+    {
+      "id": "1bcd64e1-2113-4e56-aac1-18ab6d854c9a",
+      "x": 0.8,
+      "y": 6.3,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_166",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "167": [
+    {
+      "id": "4012a5c7-b22f-4942-94f7-f4cff0700bd9",
+      "x": 1.21,
+      "y": 7.37,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_167",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "168": [
+    {
+      "id": "3dd5d7d9-f872-4617-8af5-4a5ba399f9c0",
+      "x": 0.8,
+      "y": 6.91,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_168",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "170": [
+    {
+      "id": "89dc33c0-fbc9-4b1a-8e67-a1831e8fb522",
+      "x": 0.6,
+      "y": 16.28,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_170",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "93acabd6-51f4-4ce7-b5e0-6e10c0bd5664",
+      "x": 0.8,
+      "y": 43.16,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_170_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "171": [
+    {
+      "id": "b0cd3cc7-631f-436f-9029-43ccb87ebe60",
+      "x": 1.01,
+      "y": 45.31,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_171",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "172": [
+    {
+      "id": "ce297489-e987-4b66-a520-ecb1de0b64c0",
+      "x": 0.6,
+      "y": 51,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_172",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "177": [
+    {
+      "id": "78a05759-f51b-4d0d-9662-dace14031c9e",
+      "x": 1.01,
+      "y": 19.05,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_177",
+      "type": "iframe",
+      "size": "1024x720"
+    },
+    {
+      "id": "fc1b93d2-5699-456b-b059-fd7870eee49c",
+      "x": 1.41,
+      "y": 39.63,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_177_1",
+      "type": "iframe",
+      "size": "1024x720"
+    }
+  ],
+  "178": [
+    {
+      "id": "c3e7c5bd-0b36-4bcc-8e78-f742c8893547",
+      "x": 0.4,
+      "y": 67.74,
+      "title": "Interactivity",
+      "icon": "img/icons/interactivities.svg",
+      "link": "resources/Interactivities/Page/index.html?page=Page_178",
       "type": "iframe",
       "size": "1024x720"
     }

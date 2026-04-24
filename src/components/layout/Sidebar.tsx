@@ -2,13 +2,14 @@
 // Sidebar — Table of Contents
 // ============================================
 
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { getTocData } from "@/config/toc.config";
 import { useBookStore } from "@/store/useBookStore";
 import { useUIStore } from "@/store/useUIStore";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import pagesData from "@/data/pages.json";
 
 export default function Sidebar() {
   const isOpen = useUIStore((s) => s.isSidebarOpen);
@@ -22,11 +23,11 @@ export default function Sidebar() {
 
   useClickOutside(ref, () => setSidebarOpen(false), isOpen);
 
-  let tocEntries: ReturnType<typeof getTocData> = [];
+  let tocEntries: ReturnType<typeof getTocData> = { toc: [], mediaToc: [], interactiveToc: [] };
   try {
     tocEntries = getTocData();
   } catch {
-    tocEntries = [];
+    tocEntries = { toc: [], mediaToc: [], interactiveToc: [] };
   }
 
   const handleNavigation = (page: number) => {
@@ -34,6 +35,37 @@ export default function Sidebar() {
     setPage(page);
     setSidebarOpen(false);
   };
+
+  const animationPages = useMemo(() => {
+    const anims: { page: number; title: string; isUnitHeader?: boolean }[] = [];
+    Object.entries(pagesData).forEach(([pageStr, items]) => {
+      if (Array.isArray(items)) {
+        const hasAnimation = items.some(
+          (item: any) => item.title === "Animation" || item.type === "video"
+        );
+        if (hasAnimation) {
+          anims.push({ page: parseInt(pageStr, 10), title: "Animation" });
+        }
+      }
+    });
+    return anims.sort((a, b) => a.page - b.page);
+  }, []);
+
+  const interactivePages = useMemo(() => {
+    const interactives: { page: number; title: string; isUnitHeader?: boolean }[] = [];
+    Object.entries(pagesData).forEach(([pageStr, items]) => {
+      if (Array.isArray(items)) {
+        const hasInteractive = items.some(
+          (item: any) => item.title === "Interactivity" || item.type === "iframe"
+        );
+        if (hasInteractive) {
+          interactives.push({ page: parseInt(pageStr, 10), title: "Interactivity" });
+        }
+      }
+    });
+    return interactives.sort((a, b) => a.page - b.page);
+  }, []);
+
   console.log(tocEntries);
   return (
     <AnimatePresence>
@@ -93,7 +125,7 @@ export default function Sidebar() {
                   className="overflow-auto"
                 >
                   <ul className="space-y-1 px-1">
-                    {tocEntries.map((entry: any, index: number) => {
+                    {tocEntries.toc?.map((entry: any, index: number) => {
                       const isActive = currentPage === entry.page;
                       const isUnit = entry.isUnitHeader;
 
@@ -144,7 +176,7 @@ export default function Sidebar() {
                   className="overflow-auto"
                 >
                   <ul className="space-y-1 px-1">
-                    {tocEntries?.map((entry: any, index: number) => {
+                    {animationPages.map((entry: any, index: number) => {
                       const isActive = currentPage === entry.page;
                       const isUnit = entry.isUnitHeader;
 
@@ -195,7 +227,7 @@ export default function Sidebar() {
                   className="overflow-auto"
                 >
                   <ul className="space-y-1 px-1">
-                    {(tocEntries as any)?.interactiveToc?.map(
+                    {interactivePages.map(
                       (entry: any, index: number) => {
                         const isActive = currentPage === entry.page;
                         const isUnit = entry.isUnitHeader;

@@ -1,17 +1,23 @@
 import type { TOCEntry } from "@/types/book.types";
 import tocData from "../data/toc.json";
 
-let _tocData: TOCEntry[] | null = null;
+export interface FullTOCData {
+  toc: TOCEntry[];
+  mediaToc?: any[];
+  interactiveToc?: any[];
+}
 
-export function loadTocData(): TOCEntry[] {
+let _tocData: FullTOCData | null = null;
+
+export function loadTocData(): FullTOCData {
   if (_tocData) return _tocData;
 
-  _tocData = tocData.toc as TOCEntry[];
+  _tocData = tocData as unknown as FullTOCData;
 
   return _tocData;
 }
 
-export function getTocData(): TOCEntry[] {
+export function getTocData(): FullTOCData {
   if (!_tocData) {
     throw new Error("TOC data not loaded yet. Call loadTocData() first.");
   }
