@@ -207,6 +207,7 @@ export default function DrawingCanvas() {
       }
 
       fc.freeDrawingBrush = brush;
+      fc.freeDrawingCursor = "inherit";
     }
 
     return () => {
@@ -243,6 +244,7 @@ export default function DrawingCanvas() {
     }
 
     fc.freeDrawingBrush = brush;
+    fc.freeDrawingCursor = "inherit";
   }, [activeTool, penColor, highlightColor, penWidth]);
 
   // ── Auto-save on every path created ────────────────────────────────
@@ -298,10 +300,15 @@ export default function DrawingCanvas() {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 z-20"
+      className={`absolute inset-0 z-20 ${
+        activeTool === "pen"
+          ? "cursor-pen"
+          : activeTool === "highlighter"
+            ? "cursor-highlighter"
+            : ""
+      }`}
       style={{
         pointerEvents: isActive ? "auto" : "none",
-        cursor: isActive ? "crosshair" : "default",
         touchAction: "none",
       }}
     >

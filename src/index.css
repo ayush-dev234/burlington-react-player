@@ -331,6 +331,25 @@ header.fixed {
 }
 
 
-.mt-45{
+.mt-45 {
   margin-top: 45px !important;
 }
+
+/* --- Custom Annotation Cursors --- */
+.cursor-pen,
+.cursor-pen .upper-canvas,
+.cursor-pen canvas {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z'%3E%3C/path%3E%3Cpath d='m15 5 4 4'%3E%3C/path%3E%3C/svg%3E")
+      0 24,
+    crosshair !important;
+}
+
+.cursor-highlighter,
+.cursor-highlighter .upper-canvas,
+.cursor-highlighter canvas {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='rgba(255, 255, 0, 0.5)' stroke='black' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 11-6 6v3h9l3-3'%3E%3C/path%3E%3Cpath d='m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4'%3E%3C/path%3E%3C/svg%3E")
+      0 24,
+    crosshair !important;
+}
+
+

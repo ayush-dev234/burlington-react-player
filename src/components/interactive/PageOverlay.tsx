@@ -20,7 +20,10 @@ export default function PageOverlay({
   onItemClick,
 }: PageOverlayProps) {
   const notes = useNotesStore((s) => s.notes);
-  const pageNotes = useMemo(() => notes.filter(n => n.pageNum === pageNum), [notes, pageNum]);
+  const pageNotes = useMemo(
+    () => notes.filter((n) => n.pageNum === pageNum),
+    [notes, pageNum],
+  );
   const setActiveModal = useUIStore((s) => s.setActiveModal);
 
   const items = useMemo(() => {
@@ -46,13 +49,13 @@ export default function PageOverlay({
       ))}
 
       {pageNotes.map((note) => (
-        <StickyNote 
-          key={`note-${note.id}`} 
-          note={note} 
-          onOpenNote={(clickedNote) =>{
+        <StickyNote
+          key={`note-${note.id}`}
+          note={note}
+          onOpenNote={(clickedNote) => {
             useNotesStore.getState().setActiveNoteId(clickedNote.id);
             setActiveModal("notes");
-          }} 
+          }}
         />
       ))}
     </div>

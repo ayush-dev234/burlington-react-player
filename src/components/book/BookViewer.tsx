@@ -77,6 +77,7 @@ export default function BookViewer() {
   // Direction tracking for single-mode animations
   const prevPageRef = useRef(currentPage);
   const [slideDirection, setSlideDirection] = useState(1);
+  const [isFlipping, setIsFlipping] = useState(false);
 
   useEffect(() => {
     if (currentPage > prevPageRef.current) {
@@ -204,13 +205,23 @@ export default function BookViewer() {
   }, [nextPage]);
 
   // ── Sync store → flipbook ──────────────────────────────────────────
+  // We track the intended target separately from the suppress flag so
+  // that onPage can distinguish "I caused this flip" from "user dragged".
+  const targetPageRef = useRef<number>(currentPage);
+
   useEffect(() => {
     if (viewMode !== "double") return;
+
+    targetPageRef.current = currentPage;
+
+    // If the flip was initiated by the flipbook itself, the suppressSyncRef
+    // will be true — skip driving it again to avoid a feedback loop.
     if (suppressSyncRef.current) {
       suppressSyncRef.current = false;
       return;
     }
 
+    // Give the flipbook a short moment to be ready (especially on remount).
     const timer = setTimeout(() => {
       const pf = bookRef.current?.pageFlip();
       if (!pf) return;
@@ -219,17 +230,25 @@ export default function BookViewer() {
         const targetIndex = currentPage - 1;
         const currentIndex = pf.getCurrentPageIndex();
 
-        if (typeof currentIndex === "number" && currentIndex !== targetIndex) {
-          if (typeof pf.flip === "function") {
-            pf.flip(targetIndex);
-          } else {
-            pf.turnToPage(targetIndex);
-          }
+        if (typeof currentIndex !== "number" || currentIndex === targetIndex)
+          return;
+
+        const distance = Math.abs(targetIndex - currentIndex);
+
+        // For adjacent pages (prev/next button): use flip() for the nice animation.
+        // For large jumps (TOC, go-to-page, notes): use turnToPage() for instant,
+        // reliable navigation — avoids fighting an in-progress flip animation.
+        if (distance <= 2 && typeof pf.flip === "function") {
+          pf.flip(targetIndex);
+        } else if (typeof pf.turnToPage === "function") {
+          pf.turnToPage(targetIndex);
+        } else if (typeof pf.flip === "function") {
+          pf.flip(targetIndex);
         }
       } catch (err) {
-        console.warn("Flipbook not ready", err);
+        console.warn("Flipbook sync failed:", err);
       }
-    }, 50);
+    }, 80);
 
     return () => clearTimeout(timer);
   }, [currentPage, viewMode]);
@@ -241,17 +260,28 @@ export default function BookViewer() {
       if (!flipbookReadyRef.current) {
         flipbookReadyRef.current = true;
       }
-      if (newPage !== currentPage) {
-        suppressSyncRef.current = true;
-        setPage(newPage);
-      }
+
+      // If the flipbook landed exactly where we told it to go, just mark
+      // ready — don't update the store (avoids the feedback loop).
+      if (newPage === targetPageRef.current) return;
+
+      // The user physically flipped to a different page — update the store,
+      // and suppress the next store→flipbook sync to avoid a loop.
+      suppressSyncRef.current = true;
+      setPage(newPage);
     },
-    [currentPage, setPage],
+    [setPage],
   );
 
-  const onFlipEvent = useCallback(() => {
-    playFlip();
-  }, [playFlip]);
+  const onFlipEvent = useCallback(
+    (e?: any) => {
+      if (e && e.data) {
+        setIsFlipping(e.data !== "read");
+      }
+      playFlip();
+    },
+    [playFlip],
+  );
 
   // ── Keyboard navigation ────────────────────────────────────────────
   useEffect(() => {
@@ -375,6 +405,7 @@ export default function BookViewer() {
               ))}
             </FlipBook>
           )}
+
 
         {/* Render Smooth Framer Motion Slider for Single Mode */}
         {viewMode === "single" &&
